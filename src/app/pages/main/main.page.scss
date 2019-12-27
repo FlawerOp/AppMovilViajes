@@ -10,7 +10,7 @@ ion-content {
 .titulo {
   text-align: start;
   width: 100%;
-  font-size:16px;
+  font-size: 16px;
   font-weight: bold;
   color: #232323;
   text-align: start;
@@ -21,19 +21,18 @@ ion-content {
   margin-bottom: 2%;
 }
 
-.p{
+.p {
   margin-left: 5%;
 }
 
-.p2{
+.p2 {
   margin-left: 5%;
-  color:#232323;
+  color: #232323;
 }
 
 img {
-  width: 100%;
+  width: 250px;
   height: 130px;
-
 }
 
 .cartas {
@@ -81,10 +80,98 @@ ion-card-content {
 
 }
 
-.contenido {
-  width: 70%;
-  height: auto;
-  margin: 1%;
-  position: relative;
-  left: 10%;
+//menu
+
+.icono {
+  font-size: 30px;
+}
+
+.botonmenu {
+  width: 50px;
+  height: 50px;
+  --border-radius: 50%;
+  border-radius: 50%;
+}
+
+.icono2 {
+  font-size: 30px;
+  color: #a2cc46;
+}
+
+.botonmenu2 {
+  width: 50px;
+  height: 50px;
+  --border-radius: 50%;
+  border-radius: 50%;
+  margin-left: 84%;
+}
+
+.menutop {
+  background: #232323;
+  box-shadow: none;
+}
+
+.menuback {
+  --background: #232323;
+  --border: none;
+}
+
+.letraslista {
+  background-color: #232323;
+  margin-top: 8%;
+
+  ion-item {
+    --background: #232323;
+    --color: white;
+    font-size: 21px;
+    margin-top: 5%;
+  }
+  ion-icon{
+    font-size: 40px;
+    color: white;
+    margin-left: 3%;
+    margin-right: 6%;
+  }
+}
+
+.nombres {
+  width: 100%;
+  height: 60px;
+  border-top-left-radius: 54px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 54px;
+  margin-left: 5%;
+
+  h5 {
+    margin-top: 3%;
+    margin-left: 5%;
+    color: #a2cc46;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  p {
+    position: absolute;
+    top: 55%;
+    color: #232323;
+    font-size: 16px;
+    right: 45%;
+    font-weight: bold;
+  }
+
+  .avatare {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    top: 8%;
+    right: 82%;
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+  }
 }

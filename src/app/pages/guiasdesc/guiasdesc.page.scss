@@ -1,0 +1,68 @@
+* {
+    padding: 0%;
+    margin: 0%;
+  }
+  
+  .botonatras {
+    position: absolute;
+    --background: white;
+    width: 35px;
+    height: 35px;
+    --border-radius: 50%;
+    left: 5%;
+    top: 3%;
+  }
+  
+  .icono{
+    position: absolute;
+    font-size: 31px;
+    left: 7%;
+    color: #a2cc46;
+  }
+  
+  .card {
+    width: 100%;
+    margin-top: -14%;
+    background: white;
+    border-radius: 54px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom: none;
+    height: auto;
+    box-shadow: none;
+  }
+  
+  .titulos {
+    width: 80%;
+    margin-left: 20%;
+    margin-top: 8%;
+  }
+  
+  .titulos2 {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 6%;
+    font-weight: bold;
+    color: #232323;
+  }
+  
+  ion-card-subtitle {
+    width: 80%;
+    margin-left: 20%;
+    margin-top: 0%;
+    font-weight: bold;
+  }
+  
+  .descripcion {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 0%;
+    font-weight: bold;
+  }
+  
+  ion-icon {
+    position: absolute;
+    font-size: 25px;
+    left: 10%;
+    color: #a2cc46;
+  }

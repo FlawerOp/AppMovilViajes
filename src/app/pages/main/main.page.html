@@ -1,64 +1,75 @@
 <ion-menu side="start" menuId="main" class="my-custom-menu">
-  <ion-header color="secondary">
-    <h5>{{user.email}}</h5>
-    <p>ciudad turista</p>
+  <ion-header class="menutop">
+    <ion-buttons slot="end">
+      <ion-button class="botonmenu2" (click)="atras()">
+        <ion-icon class="icono2" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-header>
-  <ion-content color="secondary">
-    <ion-list class="letraslista" color="secondary">
-      <ion-item color="secondary">
-        <h4>Opciones:</h4>
+  <ion-content class="menuback">
+    <ion-card class="nombres">
+      <ion-avatar class="avatare">
+        <img src="../../assets/img/bandera.jpg" />
+      </ion-avatar>
+      <h5>{{user.email}}</h5>
+      <p>ciudad turista</p>
+    </ion-card>
+    <ion-list class="letraslista">
+      <ion-item routerLink="/main">Mi Dia <ion-icon name="sunny" slot="start"></ion-icon>
       </ion-item>
-      <ion-item color="secondary" routerLink="/main">Mi Dia <ion-icon color="tertiary" name="contact" slot="start">
-        </ion-icon>
+      <ion-item routerLink="/semana" routerLink="/main">Mi Semana <ion-icon name="calendar" slot="start"></ion-icon>
       </ion-item>
-      <ion-item color="secondary" routerLink="/semana" routerLink="/main">Mi Semana <ion-icon color="tertiary"
-          name="build" slot="start"></ion-icon>
+      <ion-item routerLink="/guias">Guias <ion-icon name="people" slot="start"></ion-icon>
       </ion-item>
-      <ion-item color="secondary" routerLink="/guias">Guias <ion-icon color="tertiary" name="help-circle" slot="start">
-        </ion-icon>
+      <ion-item routerLink="/conductores">Conductores <ion-icon name="car" slot="start"></ion-icon>
       </ion-item>
-      <ion-item color="secondary" routerLink="/conductores">Conductores <ion-icon color="tertiary" name="log-out"
-          slot="start"></ion-icon>
-      </ion-item>
-      <ion-item color="secondary" routerLink="/contacto-rapido">Contacto Rapido<ion-icon color="tertiary" name="log-out"
-          slot="start"></ion-icon>
+      <ion-item routerLink="/contacto-rapido">Contacto Rapido<ion-icon name="call" slot="start"></ion-icon>
       </ion-item>
     </ion-list>
   </ion-content>
-  <ion-footer class="menufoo">
-    <ion-buttons class="ale" (click)="atras()">
-      <ion-icon slot="end" color="secondary" name="arrow-round-back"></ion-icon>
-    </ion-buttons>
-  </ion-footer>
 </ion-menu>
 <ion-router-outlet main></ion-router-outlet>
 
 <ion-header no-border>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-button class="botonmenu" (click)="openCustom()">
+        <ion-icon class="icono" name="menu"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-title class="dia_toolbar">mi itinerario</ion-title>
-
+    <ion-title class="dia_toolbar">Mi Dia</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="botonmenu" disabled>
+        <ion-icon class="icono" name=""></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
-  <ion-card *ngFor="let item of array" (click)="esta(item.titulo,item.url,
+  <ion-card *ngFor=" let item of array" (click)="esta(item.titulo,item.url,
 item.duracion,item.descripcion,item.incluye,item.no_incluye,item.recomendaciones)">
-    
+
     <div class="imagenes">
       <img mat-card-image src="{{item.url}}" />
     </div>
     <div class="cartas">
-        <div class="titulo" innerHtml="{{item.titulo}}"></div>
-      <p class="p">Visita tour ciudad de Santa Fé de Antioquia.</p>
-      <br>
+      <div class="titulo" innerHtml="{{item.titulo}}"></div>
+      <p class="p" innerHtml="{{item.descripcion}}"></p>
       <p class="p2">Tiempo estimado: <b>2 Horas</b></p>
-     <!-- <div class="contenido" innerHtml="{{item.descripcion}} "></div> -->
+      <br>
     </div>
 
   </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/guias">
+      <ion-icon name="person"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

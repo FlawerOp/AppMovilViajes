@@ -1,34 +1,76 @@
-<ion-menu side="start" menuId="guias" class="my-custom-menu" >
-  <ion-header color="secondary" >
-<h4>asdadssad</h4>
+<ion-menu side="start" menuId="guias" class="my-custom-menu">
+  <ion-header class="menutop">
+    <ion-buttons slot="end">
+      <ion-button class="botonmenu2" (click)="atras()">
+        <ion-icon class="icono2" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-header>
-  <ion-content color="secondary">
-    <ion-list class="letraslista" color="secondary">
-      <ion-item color="secondary"> <h4>Opciones:</h4></ion-item>
-      <ion-item color="secondary">Mi Cuenta <ion-icon color="tertiary" name="contact" slot="start"></ion-icon></ion-item>
-      <ion-item color="secondary">Configuracion <ion-icon color="tertiary" name="build" slot="start"></ion-icon></ion-item>
-      <ion-item color="secondary">Ayuda <ion-icon color="tertiary" name="help-circle" slot="start"></ion-icon></ion-item>
-      <ion-item color="secondary">Cerrar Sesion <ion-icon color="tertiary" name="log-out" slot="start"></ion-icon></ion-item>
+  <ion-content class="menuback">
+    <ion-card class="nombres">
+      <ion-avatar class="avatare">
+        <img src="../../assets/img/bandera.jpg" />
+      </ion-avatar>
+      <h5>{{user.email}}</h5>
+      <p>ciudad turista</p>
+    </ion-card>
+    <ion-list class="letraslista">
+      <ion-item routerLink="/main">Mi Dia <ion-icon name="sunny" slot="start"></ion-icon>
+      </ion-item>
+      <ion-item routerLink="/semana" routerLink="/main">Mi Semana <ion-icon name="calendar" slot="start"></ion-icon>
+      </ion-item>
+      <ion-item routerLink="/guias">Guias <ion-icon name="people" slot="start"></ion-icon>
+      </ion-item>
+      <ion-item routerLink="/conductores">Conductores <ion-icon name="car" slot="start"></ion-icon>
+      </ion-item>
+      <ion-item routerLink="/contacto-rapido">Contacto Rapido<ion-icon name="call" slot="start"></ion-icon>
+      </ion-item>
     </ion-list>
   </ion-content>
-  <ion-footer class="menufoo">
-      <ion-item class="vv">Informacion <ion-icon name="information-circle" slot="start"></ion-icon>
-        <ion-buttons class="ale" (click)="atras()">
-          <ion-icon slot="end" color="secondary" name="arrow-round-back"></ion-icon>
-        </ion-buttons>
-      </ion-item>
-      
-  </ion-footer >
 </ion-menu>
 <ion-router-outlet main></ion-router-outlet>
 
-
-<ion-header>
-  <ion-toolbar>
-    <ion-title>guias</ion-title>
+<ion-header no-border>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button class="botonmenu" (click)="openCustom()">
+        <ion-icon class="icono" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="dia_toolbar">Guias</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="botonmenu" disabled>
+        <ion-icon class="icono" name=""></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card *ngFor="let item of array2" (click)="esta(item.nombre,item.telefono,item.foto)">
+    
+    <div class="imagenes">
+      <img mat-card-image src="{{item.foto}}" />
+    </div>
+
+    <div class="cartas">
+      <div class="titulo" innerHtml="{{item.nombre}}"></div>
+      <p class="p">Telefono:</p>
+      <p class="p2" innerHtml="{{item.telefono}}"></p>
+    </div>
+    
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="person"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>

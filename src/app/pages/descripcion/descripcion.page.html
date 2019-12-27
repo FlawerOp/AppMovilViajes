@@ -1,70 +1,39 @@
-<ion-menu side="start" menuId="descripcion" class="my-custom-menu" >
-    <ion-header color="secondary" >
-      <h5>{{user.email}}</h5>
-      <p>ciudad turista</p>
-    </ion-header>
-    <ion-content color="secondary">
-      <ion-list class="letraslista" color="secondary">
-        <ion-item color="secondary"> <h4>Opciones:</h4></ion-item>
-        <ion-item color="secondary" routerLink="/main" >Mi Dia <ion-icon color="tertiary" name="contact" slot="start"></ion-icon></ion-item>
-        <ion-item color="secondary" routerLink="/semana"  routerLink="/main" >Mi Semana <ion-icon color="tertiary" name="build" slot="start"></ion-icon></ion-item>
-        <ion-item color="secondary" routerLink="/guias" >Guias <ion-icon color="tertiary" name="help-circle" slot="start"></ion-icon></ion-item>
-        <ion-item color="secondary" routerLink="/conductores" >Conductores <ion-icon color="tertiary" name="log-out" slot="start"></ion-icon></ion-item>
-        <ion-item color="secondary" routerLink="/contacto-rapido" >Contacto Rapido<ion-icon color="tertiary" name="log-out" slot="start"></ion-icon></ion-item>
-      </ion-list>
-    </ion-content>
-    <ion-footer class="menufoo">
-          <ion-buttons class="ale" (click)="atras()">
-            <ion-icon slot="end" color="secondary" name="arrow-round-back"></ion-icon>
-          </ion-buttons>      
-    </ion-footer >
-  </ion-menu>
-  <ion-router-outlet main></ion-router-outlet>
+<ion-content>
 
-<ion-header no-border>
-    <ion-toolbar color="success">
-      <ion-buttons slot="start">
-        <ion-menu-button ></ion-menu-button>
-      </ion-buttons>
-      <ion-title class="dia_toolbar">Descripcion del Evento</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
-  <div   class="scroll" scrollY="true" >
-<ion-card class="card">
-  
-  <ion-card-header  >
-    <ion-title >
-      <div class="eltitulo" innerHtml="{{titulo}}" > 
-        </div>    
-        <ion-card-subtitle innerHtml="{{duracion}}" ></ion-card-subtitle>
-      </ion-title>
-      
+  <ion-button routerLink="/main"class="botonatras">
+      <ion-icon class="icono" name="close"></ion-icon>
+  </ion-button>
+
+  <div class="imagenes">
+    <img id="imagenes" mat-card-image src="{{url}}" />
+  </div>
+
+
+  <ion-card class="card">
+
+    <ion-card-header>
+
+        <ion-icon name="pin"></ion-icon>
+        <ion-card-title class="titulos" innerHtml="{{titulo}}"></ion-card-title>
+        <ion-card-subtitle  innerHtml="{{duracion}}"></ion-card-subtitle>
+     
     </ion-card-header>
-    <!-- //TODO hacer un scroll para contenidos largos -->
-    <ion-card-content>
-        <div class="imagenes">
-            <img id="imagenes"  mat-card-image src="{{url}}"/>
-          </div>
-          <br>
-      <div class="descripcion"  > Descripción:
-        <br>
-        <div innerHtml="{{descripcion}}"  >   </div>
-      </div>
 
-      <div class="incluye"  > Este evento incluye:
-          <div innerHtml="{{incluye}}"  >   </div>
-        </div>
-        <div class="no_incluye"  > Este evento no incluye:
-            <div innerHtml="{{no_incluye}}"  >   </div>
-          </div>
-          <div class="recomendaciones"  > Nuestras recomendaciones son:
-              <div innerHtml="{{recomendaciones}}"  >   </div>
-            </div>
+    <ion-card-content>
+      <div class="titulos2"> Descripción:</div>
+      <div class="descripcion" innerHtml="{{descripcion}}"> </div>
+
+      <div class="titulos2"> Este evento incluye:</div>
+      <div class="descripcion "innerHtml="{{incluye}}"> </div>
+
+      <div class="titulos2" > Este evento no incluye:</div>
+      <div class="descripcion" innerHtml="{{no_incluye}}"> </div>
+
+      <div class="titulos2" > Nuestras recomendaciones son:</div>
+      <div class="descripcion" innerHtml="{{recomendaciones}}"> </div>
 
     </ion-card-content>
-    
+
   </ion-card>
-</div>
-    
-    
+
+</ion-content>

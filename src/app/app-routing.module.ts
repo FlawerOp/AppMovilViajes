@@ -40,6 +40,10 @@ const routes: Routes = [
     path: 'onboarding',
     loadChildren: () => import('./pages/onboarding/onboarding.module').then( m => m.OnboardingPageModule)
   },
+  {
+    path: 'guiasdesc/:nombre/:telefono/:foto',
+    loadChildren: () => import('./pages/guiasdesc/guiasdesc.module').then( m => m.GuiasdescPageModule)
+  },
 ];
 
 @NgModule({

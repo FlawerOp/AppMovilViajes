@@ -1,0 +1,33 @@
+<ion-content>
+
+  <ion-button routerLink="/guias"class="botonatras">
+      <ion-icon class="icono" name="close"></ion-icon>
+  </ion-button>
+
+  <div class="imagenes">
+    <img id="imagenes" mat-card-image src="{{foto}}" />
+  </div>
+
+
+  <ion-card class="card">
+
+    <ion-card-header>
+
+        <ion-icon name="person"></ion-icon>
+        <ion-card-title class="titulos">Guia</ion-card-title>
+        <ion-card-subtitle  innerHtml="{{nombre}}"></ion-card-subtitle>
+     
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="titulos2"> Telefono:</div>
+      <div class="descripcion" innerHtml="{{telefono}}"> </div>
+
+      <div class="titulos2"> Descripcion:</div>
+      <div class="descripcion ">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore consectetur, debitis recusandae ipsa ratione ipsum provident facere assumenda, earum, tempore ea voluptatum quod libero eaque laboriosam neque minus omnis beatae? </div>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

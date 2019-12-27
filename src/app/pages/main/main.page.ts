@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators'
-import {  ToastController, LoadingController } from '@ionic/angular';
+import { ToastController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { MainService } from "../../servicios/main.service";
 import { AuthService } from 'src/app/servicios/auth.service';
@@ -15,39 +15,42 @@ import { MenuController } from '@ionic/angular';
 })
 export class MainPage implements OnInit {
 
-  array:any;
+  private arraynuevo: any[];
+
+
+  array: any;
   constructor(
     private loadingController: LoadingController,
-    private mainService:MainService,
+    private mainService: MainService,
     private Router: Router,
-    private toastController : ToastController,
-    private authService:AuthService,
+    private toastController: ToastController,
+    private authService: AuthService,
     private menu: MenuController
-    ){ }
+  ) { }
 
   ngOnInit() {
-   this.mainService.getAllEventos().subscribe(res=> {
-     this.array=res;
-     console.log(this.array);
-  });
+    this.mainService.getAllEventos().subscribe(res => {
+      this.array = res;
+      console.log(this.array);
+    });
 
-  this.authService.isAuth().subscribe(user => {
-    if (user) {
-console.log(user);
-this.user.name = user.displayName;
-this.user.email = user.email;
-this.user.photoUrl = user.photoURL;
-}
-})
+    this.authService.isAuth().subscribe(user => {
+      if (user) {
+        console.log(user);
+        this.user.name = user.displayName;
+        this.user.email = user.email;
+        this.user.photoUrl = user.photoURL;
+      }
+    });
   }
 
   openCustom() {
-    this.menu.enable(true, 'custom');
-    this.menu.open('custom');
-}
-atras() {
-    this.menu.close('custom');
-}
+    this.menu.enable(true, 'main');
+    this.menu.open('main');
+  }
+  atras() {
+    this.menu.close('main');
+  }
 
   user: UserInterface = {
     name: '',
@@ -57,9 +60,17 @@ atras() {
 
   public providerId: string = 'null';
 
-  esta(titulo,url,duracion,descripcion,incluye,no_incluye,recomendaciones){
+  esta(titulo, url, duracion, descripcion, incluye, no_incluye, recomendaciones) {
 
-   this.Router.navigate(["/descripcion/",titulo,url,duracion,descripcion,incluye,no_incluye,recomendaciones]);
+    this.Router.navigate(["/descripcion/", titulo, url, duracion, descripcion, incluye, no_incluye, recomendaciones]);
+  }
+
+  doRefresh(event) {
+    this.ngOnInit();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 1500);
   }
 }
- 
+
