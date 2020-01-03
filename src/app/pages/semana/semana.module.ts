@@ -8,10 +8,14 @@ import { SemanaPageRoutingModule } from './semana-routing.module';
 
 import { SemanaPage } from './semana.page';
 
+import { NgCalendarModule  } from 'ionic2-calendar';
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    NgCalendarModule,
     IonicModule,
     SemanaPageRoutingModule
   ],

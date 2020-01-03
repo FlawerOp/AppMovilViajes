@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  ion-content {
+    --background: #e0e0e0;
+  }
+  
+  .titulo {
+    text-align: start;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    color: #232323;
+    text-align: start;
+    padding: 3%;
+    font-family: 'Segoe UI';
+    margin-top: 8%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+  }
+  
+  .p {
+    margin-left: 5%;
+  }
+  
+  .p2 {
+    margin-left: 5%;
+    color: #232323;
+  }
+  
+  img {
+    width: 250px;
+    height: 130px;
+  }
+  
+  .cartas {
+    display: block;
+    width: 65%;
+  }
+  
+  .dia_toolbar {
+    text-align: center;
+  
+  }
+  
+  ion-toolbar {
+    --padding-bottom: 2%;
+  }
+  
+  ion-card {
+    --background: white;
+    margin-bottom: 0.5%;
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+  }
+  
+  .imagenes {
+    width: 90px;
+    height: 130px;
+    margin-top: 8%;
+    margin-bottom: 8%;
+    border-radius: 10px;
+  }
+  
+  
+  ion-card-title {
+    margin-left: 60%;
+    font-size: 20px;
+    text-align: center;
+    font-family: segoe ui;
+    font-weight: bold;
+  }
+  
+  ion-card-content {
+    margin-left: 56%;
+    position: relative;
+    bottom: 30%;
+  
+  }
+
+  //calendario
+
+  ion-button{
+      width: 100%;
+  }
+  
+  ion-col {
+    --ion-grid-column-padding: 0px;
+  }
+
+
+//menu
+
+.icono {
+    font-size: 30px;
+  }
+  
+  .botonmenu {
+    width: 50px;
+    height: 50px;
+    --border-radius: 50%;
+    border-radius: 50%;
+  }
+  
+  .icono2 {
+    font-size: 30px;
+    color: #a2cc46;
+  }
+  
+  .botonmenu2 {
+    width: 50px;
+    height: 50px;
+    --border-radius: 50%;
+    border-radius: 50%;
+    margin-left: 84%;
+  }
+  
+  .menutop {
+    background: #232323;
+    box-shadow: none;
+  }
+  
+  .menuback {
+    --background: #232323;
+    --border: none;
+  }
+  
+  .letraslista {
+    background-color: #232323;
+    margin-top: 8%;
+  
+    ion-item {
+      --background: #232323;
+      --color: white;
+      font-size: 21px;
+      margin-top: 5%;
+    }
+    ion-icon{
+      font-size: 40px;
+      color: white;
+      margin-left: 3%;
+      margin-right: 6%;
+    }
+  }
+  
+  .nombres {
+    width: 100%;
+    height: 60px;
+    border-top-left-radius: 54px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 54px;
+    margin-left: 5%;
+  
+    h5 {
+      margin-top: 3%;
+      margin-left: 5%;
+      color: #a2cc46;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  
+    p {
+      position: absolute;
+      top: 55%;
+      color: #232323;
+      font-size: 16px;
+      right: 45%;
+      font-weight: bold;
+    }
+  
+    .avatare {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      top: 8%;
+      right: 82%;
+  
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+    }
+  }
