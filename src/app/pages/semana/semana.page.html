@@ -39,8 +39,8 @@
     </ion-buttons>
     <ion-title class="dia_toolbar">Mi Semana</ion-title>
     <ion-buttons slot="end">
-      <ion-button class="botonmenu" disabled>
-        <ion-icon class="icono" name=""></ion-icon>
+      <ion-button (click)="today()">
+        <ion-icon name="today"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -49,36 +49,45 @@
 
 <ion-content>
 <ion-card>
-  
+  <ion-title class="fecha">
+    {{ viewTitle }}
+  </ion-title>
+  <ion-grid fixed class="login">
   <ion-row>
-    <!-- Change the displayed calendar mode -->
-    <ion-col size="12" size-md>
-      <ion-button expand="block" [color]="calendar.mode == 'month' ? 'primary' : 'secondary'" (click)="changeMode('month')">Month</ion-button>
-    </ion-col>
-    <ion-col size="12" size-md>
-      <ion-button expand="block" [color]="calendar.mode == 'week' ? 'primary' : 'secondary'" (click)="changeMode('week')">Week</ion-button>
-    </ion-col>
-    <ion-col size="12" size-md>
-      <ion-button expand="block" [color]="calendar.mode == 'day' ? 'primary' : 'secondary'" (click)="changeMode('day')">Day</ion-button>
-    </ion-col>
-  
-    <!-- Move back one screen of the slides -->
-    <ion-col size="6" text-left>
+    <ion-col size="2.4" >
       <ion-button fill="clear" (click)="back()">
         <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-col>
-  
-    <!-- Move forward one screen of the slides -->
-    <ion-col size="6" text-right>
+    <!-- Change the displayed calendar mode -->
+    <ion-col size="2.4" size-md>
+      <ion-buttons  (click)="changeMode('month')">
+        <ion-icon class="iconos" [color]="calendar.mode == 'month' ? 'primary' : 'secondary'" name="calendar"></ion-icon>
+        <p>Month</p>
+      </ion-buttons>
+    </ion-col>
+    <ion-col size="2.4" size-md>
+      <ion-buttons (click)="changeMode('week')">
+        <ion-icon class="iconos" [color]="calendar.mode == 'week' ? 'primary' : 'secondary'" name="albums"></ion-icon>
+        <p class="week">Week</p>
+      </ion-buttons>
+    </ion-col>
+    <ion-col size="2.4" size-md>
+      <ion-buttons (click)="changeMode('day')">
+        <ion-icon class="iconos" [color]="calendar.mode == 'day' ? 'primary' : 'secondary'" name="apps"></ion-icon>
+        <p class="dia">Day</p>
+      </ion-buttons>
+    </ion-col>
+    <ion-col size="2.4" >
       <ion-button fill="clear" (click)="next()">
         <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-col>
   </ion-row>
+</ion-grid>
 </ion-card>
 
-<calendar 
+<calendar class="calendario"
 [eventSource]="eventSource" 
 [calendarMode]="calendar.mode" 
 [currentDate]="calendar.currentDate"

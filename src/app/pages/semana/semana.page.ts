@@ -19,6 +19,7 @@ export class SemanaPage implements OnInit {
 
   event = {
     title: '',
+    descm: '',
     desc: '',
     startTime: '',
     endTime: '',
@@ -85,6 +86,7 @@ export class SemanaPage implements OnInit {
   resetEvent() {
     this.event = {
       title: '',
+      descm: '',
       desc: '',
       startTime: new Date().toISOString(),
       endTime: new Date().toISOString(),
