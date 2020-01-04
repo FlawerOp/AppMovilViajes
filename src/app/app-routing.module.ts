@@ -44,6 +44,10 @@ const routes: Routes = [
     path: 'guiasdesc/:nombre/:telefono/:foto',
     loadChildren: () => import('./pages/guiasdesc/guiasdesc.module').then( m => m.GuiasdescPageModule)
   },
+  {
+    path: 'chat',
+    loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
+  },
 ];
 
 @NgModule({
