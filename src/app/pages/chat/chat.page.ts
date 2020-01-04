@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-chat',
@@ -18,7 +18,7 @@ export class ChatPage implements OnInit {
     public af: AngularFireAuth,
     public fs: AngularFirestore,) {
       this.uid = localStorage.getItem('userid');
-      this.chatRef = this.fs.collection('chats').valueChanges();
+      this.chatRef = this.fs.collection('chats', ref=>ref.orderBy('Timestamp')).valueChanges();
      }
 
      send(){
@@ -26,7 +26,8 @@ export class ChatPage implements OnInit {
          this.fs.collection('chats').add({
            Name:this.af.auth.currentUser.displayName,
            Message: this.text,
-           UserID: this.af.auth.currentUser.uid,
+           UserID: this.uid,
+           Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
          });
          this.text=''; 
        }
