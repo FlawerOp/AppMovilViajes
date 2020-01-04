@@ -58,8 +58,16 @@ export class ContactoRapidoPage implements OnInit {
 
   public providerId: string = 'null';
 
-  /*esta(nombre, telefono, foto) {
-    this.Router.navigate(["/guiasdesc/", nombre, telefono, foto]);
-  }*/
+  esta(nombre, telefono) {
+    this.Router.navigate(["/chat/", nombre, telefono]);
+  }
+
+  doRefresh(event) {
+    this.ngOnInit();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 1500);
+  }
 
 }

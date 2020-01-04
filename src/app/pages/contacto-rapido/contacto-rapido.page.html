@@ -54,8 +54,7 @@
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
   
-    <!--<ion-card *ngFor="let item of array2" (click)="esta(item.nombre,item.telefono,item.foto)">-->
-      <ion-card *ngFor="let item of array2" routerLink="/chat">
+    <ion-card *ngFor="let item of array2" (click)="esta(item.nombre,item.telefono)">
       <div class="imagenes">
         <img mat-card-image src="../../assets/img/ascs.png" />
       </div>
