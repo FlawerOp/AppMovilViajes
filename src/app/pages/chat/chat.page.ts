@@ -24,7 +24,7 @@ export class ChatPage implements OnInit {
      send(){
        if (this.text != '') {
          this.fs.collection('chats').add({
-           Name:this.af.auth.currentUser.displayName,
+           Name:this.uid,
            Message: this.text,
            UserID: this.uid,
            Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
