@@ -33,6 +33,7 @@ export class ChatPage implements OnInit {
      }
 
   ngOnInit() {
+    console.log(this.uid);
   }
 
 }

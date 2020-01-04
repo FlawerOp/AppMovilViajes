@@ -36,12 +36,12 @@ export class MainPage implements OnInit {
 
     this.authService.isAuth().subscribe(user => {
       if (user) {
-        console.log(user);
         this.user.name = user.displayName;
         this.user.email = user.email;
         this.user.photoUrl = user.photoURL;
       }
     });
+    console.log(name);
   }
 
   openCustom() {

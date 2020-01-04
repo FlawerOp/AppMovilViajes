@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
   Onsubmitlogin() {
     this.authService.login(this.pasaporte, this.password).then(res => {
       this.router.navigate(["/onboarding/"]);
-      localStorage.setItem('userid', this.af.auth.currentUser.uid);
+      localStorage.setItem('userid', this.pasaporte);
     }).catch(err => alert('los datos son incorrectos o el usuario no existe' + console.log(err)));
 
   }
