@@ -21,7 +21,7 @@
       </ion-item>
       <ion-item routerLink="/guias">Guias <ion-icon name="people" slot="start"></ion-icon>
       </ion-item>
-      <ion-item routerLink="/conductores">Conductores <ion-icon name="car" slot="start"></ion-icon>
+      <ion-item routerLink="/conductores">Hoteles <ion-icon name="home" slot="start"></ion-icon>
       </ion-item>
       <ion-item routerLink="/contacto-rapido">Contacto Rapido<ion-icon name="call" slot="start"></ion-icon>
       </ion-item>
@@ -54,8 +54,7 @@
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
   
-    <!--<ion-card *ngFor="let item of array2" (click)="esta(item.nombre,item.telefono,item.foto)">-->
-      <ion-card *ngFor="let item of array2" routerLink="/chat">
+    <ion-card *ngFor="let item of array2" (click)="esta(item.nombre,item.telefono)">
       <div class="imagenes">
         <img mat-card-image src="../../assets/img/ascs.png" />
       </div>
@@ -67,12 +66,6 @@
       </div>
       
     </ion-card>
-  
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button>
-        <ion-icon name="person"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
   
   </ion-content>
 </ion-content>

@@ -45,7 +45,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/guiasdesc/guiasdesc.module').then( m => m.GuiasdescPageModule)
   },
   {
-    path: 'chat',
+    path: 'chat/:nombre/:telefono',
     loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
   },
 ];

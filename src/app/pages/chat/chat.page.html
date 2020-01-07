@@ -1,0 +1,40 @@
+<ion-header no-border>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button class="botonmenu" routerLink="/contacto-rapido">
+        <ion-icon class="icono" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="dia_toolbar">Chat de {{nombre}} </ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="botonmenu" disabled>
+        <ion-icon class="icono" name=""></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-card>
+  <div class="chat" *ngFor="let chat of chatRef | async">
+    <div class="me" *ngIf="uid== chat.UserID">
+    {{chat.Message}}
+  </div>
+  <div class="you" *ngIf="uid != chat.UserID">
+    <span class="name">
+      {{chat.Name}}
+    </span> <br>
+    {{chat.Message}}
+  </div>
+</div>
+</ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-item>
+    <ion-input placeholder=" Escribe algo..." [(ngModel)]="text"></ion-input>
+    <ion-buttons (click)="send()" color="primary">
+      <ion-icon class="lol"  name="checkmark-circle"></ion-icon>
+    </ion-buttons>
+  </ion-item>
+</ion-footer>
