@@ -23,6 +23,7 @@ export class GoogleMapsComponent implements OnInit {
       center: {lat: 4.7726686, lng: -74.0440468},
       zoom: 8
     });
+
     let marker: google.maps.Marker = new google.maps.Marker({
       map: this.map,
       position: coords
