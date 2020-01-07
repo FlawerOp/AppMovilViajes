@@ -19,6 +19,8 @@ import { AngularFireAuthModule} from '@angular/fire/auth'
 import { AngularFirestoreModule } from "angularfire2/firestore";
 import { NgCalendarModule } from "ionic2-calendar";
 import { CallNumber } from "@ionic-native/call-number/ngx";
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
