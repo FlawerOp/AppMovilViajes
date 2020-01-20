@@ -60,9 +60,9 @@ export class MainPage implements OnInit {
 
   public providerId: string = 'null';
 
-  esta(titulo, url, duracion, descripcion, incluye, no_incluye, recomendaciones) {
+  esta(titulo, url, duracion, descripcionCorta, descripcionLarga, incluye, no_incluye, recomendaciones) {
 
-    this.Router.navigate(["/descripcion/", titulo, url, duracion, descripcion, incluye, no_incluye, recomendaciones]);
+    this.Router.navigate(["/descripcion/", titulo, url, duracion, descripcionCorta, descripcionLarga, incluye, no_incluye, recomendaciones]);
   }
 
   doRefresh(event) {

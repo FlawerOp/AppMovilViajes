@@ -14,7 +14,8 @@ export class DescripcionPage implements OnInit {
   titulo;
   url;
   duracion;
-  descripcion;
+  descripcionCorta;
+  descripcionLarga;
   incluye;
   no_incluye;
   recomendaciones;
@@ -28,7 +29,8 @@ export class DescripcionPage implements OnInit {
     this.titulo = this.active.snapshot.paramMap.get("titulo");
     this.url = this.active.snapshot.paramMap.get("url");
     this.duracion = this.active.snapshot.paramMap.get("duracion");
-    this.descripcion = this.active.snapshot.paramMap.get("descripcion");
+    this.descripcionCorta=this.active.snapshot.paramMap.get("descripcionCorta");
+    this.descripcionLarga = this.active.snapshot.paramMap.get("descripcionLarga");
     this.incluye = this.active.snapshot.paramMap.get("incluye");
     this.no_incluye = this.active.snapshot.paramMap.get("no_incluye");
     this.recomendaciones = this.active.snapshot.paramMap.get("recomendaciones");

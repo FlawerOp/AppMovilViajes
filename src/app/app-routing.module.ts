@@ -13,7 +13,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/contacto-rapido/contacto-rapido.module').then( m => m.ContactoRapidoPageModule)
   },
   {
-    path: 'descripcion/:titulo/:url/:duracion/:descripcion/:incluye/:no_incluye/:recomendaciones',
+    path: 'descripcion/:titulo/:url/:duracion/:descripcionCorta/:descripcionLarga/:incluye/:no_incluye/:recomendaciones',
     loadChildren: () => import('./pages/descripcion/descripcion.module').then( m => m.DescripcionPageModule)
   },
   {

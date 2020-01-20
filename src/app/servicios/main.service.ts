@@ -16,7 +16,8 @@ main:Observable<MainID[]>;
   public mainSelected={
     id:null,
     titulo:'',
-    descripcion:'',
+    descripcionCorta:'',
+    descripcionLarga:'',
     duracion:'',
     incluye:'',
     no_incluye:'',
@@ -25,7 +26,7 @@ main:Observable<MainID[]>;
   };
 
   constructor(private readonly afs: AngularFirestore) {
-    this.mainCollection=afs.collection<MainI> ('eventos');
+    this.mainCollection=afs.collection<MainI> ('Tours');
     this.main=this.mainCollection.snapshotChanges().pipe(
       map(actions => actions.map(a=>{
         const data=a.payload.doc.data() as MainI;

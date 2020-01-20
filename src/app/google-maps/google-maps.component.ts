@@ -16,7 +16,7 @@ export class GoogleMapsComponent implements OnInit {
   }
 
   ionViewDidLoad(){
-
+/*
     let coords = new google.maps.LatLng(4.7726686,-74.0440468);
 
     this.map = new google.maps.Map(document.getElementById('map'), {
@@ -28,7 +28,7 @@ export class GoogleMapsComponent implements OnInit {
       map: this.map,
       position: coords
     });
-
+*/
   }
 
 }

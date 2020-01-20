@@ -1,6 +1,7 @@
 export interface MainI{
     titulo: string,
-    descripcion:string,
+    descripcionCorta:string,
+    descripcionLarga:string,
     duracion: string,
     incluye: string,
     no_incluye:string,

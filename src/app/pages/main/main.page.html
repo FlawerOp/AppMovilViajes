@@ -53,14 +53,14 @@
   </ion-refresher>
 
   <ion-card *ngFor=" let item of array" (click)="esta(item.titulo,item.url,
-item.duracion,item.descripcion,item.incluye,item.no_incluye,item.recomendaciones)">
+item.duracion,item.descripcionCorta,item.descripcionLarga,item.incluye,item.no_incluye,item.recomendaciones)">
 
     <div class="imagenes">
       <img mat-card-image src="{{item.url}}" />
     </div>
     <div class="cartas">
       <div class="titulo" innerHtml="{{item.titulo}}"></div>
-      <p class="p" innerHtml="{{item.descripcion}}"></p>
+      <p class="p" innerHtml="{{item.descripcionCorta}}"></p>
       <p class="p2">Tiempo estimado: <b>2 Horas</b></p>
       <br>
     </div>
