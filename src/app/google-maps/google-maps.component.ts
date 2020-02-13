@@ -28,7 +28,7 @@ export class GoogleMapsComponent implements OnInit {
       map: this.map,
       position: coords
     });
-*/
+  */  
+    
   }
-
 }

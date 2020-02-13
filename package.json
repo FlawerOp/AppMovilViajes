@@ -30,6 +30,7 @@
     "angularfire2": "^5.2.3",
     "core-js": "^2.5.4",
     "firebase": "^7.4.0",
+    "firebase-admin": "^8.9.2",
     "ionic2-calendar": "^0.5.7",
     "ng-lottie": "^0.3.2",
     "rxjs": "~6.5.1",

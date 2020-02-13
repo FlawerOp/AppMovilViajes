@@ -48,6 +48,7 @@ const routes: Routes = [
     path: 'chat/:nombre/:telefono',
     loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
   },
+
 ];
 
 @NgModule({
