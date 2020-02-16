@@ -34,14 +34,14 @@ export class MainPage implements OnInit {
       console.log(this.array);
     });
 
-  /*  this.authService.isAuth().subscribe(user => {
+  this.authService.isAuth().subscribe(user => {
       if (user) {
         this.user.name = user.displayName;
         this.user.email = user.email;
         this.user.photoUrl = user.photoURL;
       }
     });
-    console.log(name);*/
+    console.log(name);
   
   /*  FirebaseAdmin.auth().getUser(this.uid).then(userRecord=>{
       console.log(userRecord.toJSON());

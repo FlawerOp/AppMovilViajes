@@ -6,7 +6,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AlertController } from "@ionic/angular";
 import { ModalController } from "@ionic/angular";
-import * as FirebaseAdmin from "firebase-admin";
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
