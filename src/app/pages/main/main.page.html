@@ -12,7 +12,9 @@
         <img src="../../assets/img/bandera.jpg" />
       </ion-avatar>
       <h5>{{user.email}}</h5>
-      <p>ciudad turista</p>
+      <p>{{ciudad}}</p>
+      <!--TODO traer la ciudad del pasajero (aunque es mejor si se muestra la ciudad donde 
+      TODO se encuentre el pasajero en ese momento)-->
     </ion-card>
     <ion-list class="letraslista">
       <ion-item routerLink="/semana">Itinerario <ion-icon name="calendar" slot="start"></ion-icon>
@@ -65,9 +67,17 @@ item.duracion,item.descripcionCorta,item.descripcionLarga,item.incluye,item.no_i
 
   </ion-card>
 
-  <ion-fab vertical="bottom" horizontal="end"  class="botonFab">
-    <ion-fab-button routerLink="/contacto-rapido" >¿necesitas ayuda?
+  <ion-button size=" small" class="botonChat" (click)="irAlChat()">
+    ¿necesitas ayuda? 
+  </ion-button>
+
+
+  <!--
+  <ion-fab vertical="bottom" horizontal="end"  class="botonFab" color="danger" >
+    <ion-fab-button routerLink="/contacto-rapido" >
       <ion-icon name="person" position="end"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+-->
+
 </ion-content>

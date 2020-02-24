@@ -16,6 +16,12 @@ import { MenuController } from '@ionic/angular';
 export class GuiasPage implements OnInit {
   array: any;
   array2: any;
+
+  public isPasajero: any = null;
+  public isAsesor: any = null;
+  public ciudad: any = null;
+  public userUid: string = null;
+
   constructor(
     private guiaService: GuiasService,
     private loadingController: LoadingController,
@@ -37,14 +43,14 @@ export class GuiasPage implements OnInit {
         console.log(user);
         this.user.name = user.displayName;
         this.user.email = user.email;
-        this.user.photoUrl = user.photoURL;
+      //  this.user.photoUrl = user.photoURL;
       }
     });
+    this.getCiudad();
   }
   user: UserInterface = {
     name: '',
     email: '',
-    photoUrl: '',
   };
 
   public providerId: string = 'null';
@@ -67,5 +73,26 @@ export class GuiasPage implements OnInit {
   esta(nombre, telefono, foto) {
     this.Router.navigate(["/guiasdesc/", nombre, telefono, foto]);
   }
+
+  getCiudad() {
+    this.authService.isAuth().subscribe(auth => {
+      if (auth) {
+        this.userUid = auth.uid;
+        this.authService.isUserPasajero(this.userUid, this.ciudad)
+          .subscribe(userRole => {
+            console.warn(userRole);
+            this.isPasajero = userRole.Pasajero;
+            console.warn("resultado pasajero=" + this.isPasajero);
+            this.isAsesor = userRole.Asesor;
+            console.warn("resultado asesor=" + this.isAsesor);
+            this.ciudad = userRole.ciudad;
+            console.warn("la ciudad del pasajero es: " + this.ciudad);
+          })
+
+      }
+
+    })
+  }
+
 
 }

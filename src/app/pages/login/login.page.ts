@@ -18,6 +18,10 @@ export class LoginPage implements OnInit {
   password: string;
   Newpassword: string;
   uid;
+  public isPasajero: any = null;
+  public isAsesor: any = null;
+  public ciudad: any = null;
+  public userUid: string = null;
   constructor(
     public af: AngularFireAuth,
     public fs: AngularFirestore,
@@ -26,15 +30,22 @@ export class LoginPage implements OnInit {
     public alertController: AlertController, private modalController: ModalController) { }
 
   ngOnInit() {
-
   }
 
 
   Onsubmitlogin() {
     this.authService.login(this.pasaporte, this.password).then(res => {
-      this.router.navigate(["/onboarding/"]);
       localStorage.setItem('userid', this.pasaporte);
-      this.abrirAlertCambioConstraseña();
+      this.getRol();
+      if (this.isAsesor==true) {
+        this.router.navigate(["/contacto-rapido"]);
+      }
+      else {
+        if (this.isPasajero==true) { 
+          this.router.navigate(["/onboarding/"]);
+          this.abrirAlertCambioConstraseña();
+        }
+      }
     }).catch(err => this.abrirAlertBadPassword());
 
   }
@@ -97,7 +108,7 @@ export class LoginPage implements OnInit {
   }
 
   cambiarContrasena() {
-   
+
   }
 
 
@@ -107,5 +118,24 @@ export class LoginPage implements OnInit {
     autoplay: true,
     loop: true
   };
+
+  getRol() {
+    this.authService.isAuth().subscribe(auth => {
+      if (auth) {
+        this.userUid = auth.uid;
+        this.authService.isUserPasajero(this.userUid, this.ciudad)
+          .subscribe(userRole => {
+            console.warn(userRole);
+            this.isPasajero = userRole.Pasajero;
+            console.warn("resultado pasajero=" + this.isPasajero);
+            this.isAsesor = userRole.Asesor;
+            console.warn("resultado asesor=" + this.isAsesor);
+            this.ciudad = userRole.ciudad;
+            console.warn("la ciudad del pasajero es: " + this.ciudad);
+          })
+      }
+    })
+  }  
+
 
 }

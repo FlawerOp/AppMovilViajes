@@ -1,38 +1,52 @@
-
 <ion-content>
-  <ion-slides pager  class="punticos">
+   es Pasajero?:{{isPasajero}} <br>
+   es Asesor?: {{isAsesor}}
+  
+    <ion-slides pager class="punticos" *ngIf="isPasajero==true">
       <ion-slide>
-        <div class="diag" >
+        <div class="diag">
           <ion-icon src="assets/mosque.svg" color="primary"></ion-icon>
-          </div>
-          <div class="texto">
-              <h2>Tours</h2>
-              <p>Obten la informacion de todos tus tours programados.</p>
-              <p class="boton" color="primary" (click)="skip()"  >Saltar</p>
-            </div>
+        </div>
+        <div class="texto">
+
+          <h2>Tours</h2>
+          <p>Obten la informacion de todos tus tours programados.</p>
+          <p class="boton" color="primary" (click)="skip()">Saltar</p>
+        </div>
       </ion-slide>
 
       <ion-slide>
-          <div class="diag" >
-            <ion-icon src="assets/hotel.svg" color="primary"></ion-icon>
-          </div>
-          <div class="texto">
-            <h2>Hoteles</h2>
-            <p>Conoce la informacion de tus hoteles.</p>
-            <p class="boton" color="primary" (click)="skip()" >Saltar</p>
-          </div>
-        </ion-slide>
-    
-        <ion-slide>
-          <div class="diag" >
-            <ion-icon src="assets/consultant.svg"  color="primary"></ion-icon>
-          </div>
-          <div class="texto" >
-            <h2>Asesor Turistico</h2>
-            <p>Contacta tu asesor turistico en cualquier momento</p>
-            <p class="boton" color="primary" (click)="skip()" >Entendido</p>
+        <div class="diag">
+          <ion-icon src="assets/hotel.svg" color="primary"></ion-icon>
+        </div>
+        <div class="texto">
+          <h2>Hoteles</h2>
+          <p>Conoce la informacion de tus hoteles.</p>
+          <p class="boton" color="primary" (click)="skip()">Saltar</p>
+        </div>
+      </ion-slide>
 
-          </div>
-        </ion-slide>
-      </ion-slides>
+      <ion-slide>
+        <div class="diag">
+          <ion-icon src="assets/consultant.svg" color="primary"></ion-icon>
+        </div>
+        <div class="texto">
+          <h2>Asesor Turistico</h2>
+          <p>Contacta tu asesor turistico en cualquier momento</p>
+          <p class="boton" color="primary" (click)="skip()">Entendido</p>
+
+        </div>
+      </ion-slide>
+    </ion-slides>
+
+
+    <div *ngIf="isAsesor==true">
+    <p>hola Asesor!</p>
+
+    <p>
+    Poner los slides de introduccion para el modulo de Asesores
+  </p>
+  
+</div>
+  
 </ion-content>

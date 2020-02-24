@@ -175,8 +175,10 @@ ion-card-content {
     }
   }
 
-  .botonFab{
-    width: 40%;
-    background-color: red;
+  .botonChat{
+    position: relative;
+    left: 50%;
+    --border-radius: 50%;
   }
+
 }

@@ -17,6 +17,10 @@ export class MainPage implements OnInit {
 
   private arraynuevo: any[];
   uid;
+  public isPasajero: any = null;
+  public isAsesor: any = null;
+  public ciudad: any = null;
+  public userUid: string = null;
 
   array: any;
   constructor(
@@ -38,19 +42,14 @@ export class MainPage implements OnInit {
       if (user) {
         this.user.name = user.displayName;
         this.user.email = user.email;
-        this.user.photoUrl = user.photoURL;
+        //this.user.photoUrl = user.photoURL;
       }
     });
     console.log(name);
-  
-  /*  FirebaseAdmin.auth().getUser(this.uid).then(userRecord=>{
-      console.log(userRecord.toJSON());
-    }).catch(err=>{
-      console.log(err);
-    })
-    */
+    this.getCiudad();
+
   }
-  
+
   openCustom() {
     this.menu.enable(true, 'main');
     this.menu.open('main');
@@ -61,8 +60,7 @@ export class MainPage implements OnInit {
 
   user: UserInterface = {
     name: '',
-    email: '',
-    photoUrl: '',
+    email: ''
   };
 
   public providerId: string = 'null';
@@ -79,5 +77,28 @@ export class MainPage implements OnInit {
       event.target.complete();
     }, 1500);
   }
-}
 
+  irAlChat(){
+    this.Router.navigate (["/contacto-rapido"]);
+  }
+
+  getCiudad() {
+    this.authService.isAuth().subscribe(auth => {
+      if (auth) {
+        this.userUid = auth.uid;
+        this.authService.isUserPasajero(this.userUid, this.ciudad)
+          .subscribe(userRole => {
+            console.warn(userRole);
+            this.isPasajero = userRole.Pasajero;
+            console.warn("resultado pasajero=" + this.isPasajero);
+            this.isAsesor = userRole.Asesor;
+            console.warn("resultado asesor=" + this.isAsesor);
+            this.ciudad = userRole.ciudad;
+            console.warn("la ciudad del pasajero es: " + this.ciudad);
+          })
+
+      }
+
+    })
+  }
+}
