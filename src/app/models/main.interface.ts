@@ -8,3 +8,15 @@ export interface MainI{
     recomendaciones: string,
     imagenes: string
 }
+export interface Iitnerario{
+
+    nombre_itinerario,
+    grupo_itinerario,
+    hotel_itinerario,
+    tours_itinerario,
+    hora_inicio,
+    hora_finalizacion,
+    guia_tour,
+    conductor_itinerario,
+    asesor_itinerario
+}
