@@ -6,8 +6,9 @@ import { MainService } from "../../servicios/main.service";
 import { AuthService } from 'src/app/servicios/auth.service';
 import { UserInterface } from '../../../app/models/user';
 import { MenuController } from '@ionic/angular';
-import * as firebase from "firebase/app";
-//import * as FirebaseAdmin from "firebase-admin";
+import { AlertController } from "@ionic/angular";
+import { ModalController } from "@ionic/angular"; 
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.page.html',
@@ -29,7 +30,11 @@ export class MainPage implements OnInit {
     private Router: Router,
     private toastController: ToastController,
     private authService: AuthService,
-    private menu: MenuController
+    private menu: MenuController,
+    private router:Router,
+    private alertController: AlertController,
+    private modalController :ModalController
+    
   ) { }
 
   ngOnInit() {
@@ -70,7 +75,7 @@ export class MainPage implements OnInit {
     this.Router.navigate(["/descripcion/", titulo, url, duracion, descripcionCorta, descripcionLarga, incluye, no_incluye, recomendaciones]);
   }
 
-  doRefresh(event) {
+  doRefresh(event) { 
     this.ngOnInit();
     setTimeout(() => {
       console.log('Async operation has ended');
@@ -101,4 +106,18 @@ export class MainPage implements OnInit {
 
     })
   }
+async  abrirModal(){
+     const alert=await this.alertController.create(
+      {
+        header:"Bienvenido a la seccion de ayuda",
+        subHeader:"aqui podras contactarte con tu asesor turistico en caso de tener problemas, dudas, felicitaciones, o cualquier otra cosa que necesites...",
+        message:'simplemente haz click en tu asesor y escribe lo que necesites',
+        buttons:[{text:'Ok, llevame allí',handler:()=>{
+          this.irAlChat();
+        }}]
+      })
+      await alert.present()
+    }
+  
+
 }

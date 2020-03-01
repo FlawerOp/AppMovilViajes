@@ -37,11 +37,12 @@ export class LoginPage implements OnInit {
     this.authService.login(this.pasaporte, this.password).then(res => {
       localStorage.setItem('userid', this.pasaporte);
       this.getRol();
-      if (this.isAsesor==true) {
+      if (this.isAsesor == true) {
         this.router.navigate(["/contacto-rapido"]);
+        this.abrirAlertBienvenidaAsesor();
       }
       else {
-        if (this.isPasajero==true) { 
+        if (this.isPasajero == true) {
           this.router.navigate(["/onboarding/"]);
           this.abrirAlertCambioConstraseña();
         }
@@ -49,6 +50,16 @@ export class LoginPage implements OnInit {
     }).catch(err => this.abrirAlertBadPassword());
 
   }
+
+  async abrirAlertBienvenidaAsesor() {
+    const alert= await this.alertController.create({
+      header:'Bienvenido asesor/a  '+this.pasaporte,
+      subHeader:'aquí encontrarás todos los pasajeros que te han enviado mensajes',
+      buttons: [{text:'OK'}]
+    })
+    await alert.present();
+  }
+
 
   async abrirAlertBadPassword() {
 
@@ -135,7 +146,7 @@ export class LoginPage implements OnInit {
           })
       }
     })
-  }  
+  }
 
 
 }

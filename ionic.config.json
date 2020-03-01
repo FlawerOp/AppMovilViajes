@@ -1,7 +1,8 @@
 {
   "name": "Desarrollo Green Travel DMC",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

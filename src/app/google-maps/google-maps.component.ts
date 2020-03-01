@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-google-maps',
   templateUrl: './google-maps.component.html',
@@ -16,8 +15,7 @@ export class GoogleMapsComponent implements OnInit {
   }
 
   ionViewDidLoad(){
-/*
-    let coords = new google.maps.LatLng(4.7726686,-74.0440468);
+  let coords = new google.maps.LatLng(4.7726686,-74.0440468);
 
     this.map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 4.7726686, lng: -74.0440468},
@@ -28,7 +26,6 @@ export class GoogleMapsComponent implements OnInit {
       map: this.map,
       position: coords
     });
-  */  
     
   }
 }
