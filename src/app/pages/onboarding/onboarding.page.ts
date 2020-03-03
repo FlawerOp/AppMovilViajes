@@ -30,6 +30,7 @@ export class OnboardingPage implements OnInit {
     this.authService.isAuth().subscribe(auth => {
       if (auth) {
         this.userUid = auth.uid;
+        console.log (this.userUid);
         this.authService.isUserPasajero(this.userUid,this.ciudad)
           .subscribe(userRole => {
             console.warn(userRole);

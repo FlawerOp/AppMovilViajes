@@ -8,7 +8,7 @@ import { UserInterface } from '../../../app/models/user';
 import { MenuController } from '@ionic/angular';
 import { AlertController } from "@ionic/angular";
 import { ModalController } from "@ionic/angular"; 
-
+import { AngularFirestore,AngularFirestoreCollection } from "@angular/fire/firestore";
 @Component({
   selector: 'app-main',
   templateUrl: './main.page.html',
@@ -24,6 +24,7 @@ export class MainPage implements OnInit {
   public userUid: string = null;
 
   array: any;
+  arrayItinerarios:any;
   constructor(
     private loadingController: LoadingController,
     private mainService: MainService,
@@ -33,7 +34,8 @@ export class MainPage implements OnInit {
     private menu: MenuController,
     private router:Router,
     private alertController: AlertController,
-    private modalController :ModalController
+    private modalController :ModalController,
+    private afs:AngularFirestore
     
   ) { }
 
@@ -43,6 +45,11 @@ export class MainPage implements OnInit {
       console.log(this.array);
     });
 
+    this.mainService.getAllItinerarios().subscribe (res=>{
+      this.arrayItinerarios=res;
+      console.log (this.arrayItinerarios);
+    })
+
   this.authService.isAuth().subscribe(user => {
       if (user) {
         this.user.name = user.displayName;
@@ -51,7 +58,9 @@ export class MainPage implements OnInit {
       }
     });
     console.log(name);
-    this.getCiudad();
+    
+    this.mainService.getCiudad();
+    console.log("cfdhnjaskfh")
 
   }
 
@@ -70,7 +79,8 @@ export class MainPage implements OnInit {
 
   public providerId: string = 'null';
 
-  esta(titulo, url, duracion, descripcionCorta, descripcionLarga, incluye, no_incluye, recomendaciones) {
+  esta(titulo, url, duracion, descripcionCorta, descripcionLarga, incluye,
+     no_incluye, recomendaciones) {
 
     this.Router.navigate(["/descripcion/", titulo, url, duracion, descripcionCorta, descripcionLarga, incluye, no_incluye, recomendaciones]);
   }
@@ -87,25 +97,7 @@ export class MainPage implements OnInit {
     this.Router.navigate (["/contacto-rapido"]);
   }
 
-  getCiudad() {
-    this.authService.isAuth().subscribe(auth => {
-      if (auth) {
-        this.userUid = auth.uid;
-        this.authService.isUserPasajero(this.userUid, this.ciudad)
-          .subscribe(userRole => {
-            console.warn(userRole);
-            this.isPasajero = userRole.Pasajero;
-            console.warn("resultado pasajero=" + this.isPasajero);
-            this.isAsesor = userRole.Asesor;
-            console.warn("resultado asesor=" + this.isAsesor);
-            this.ciudad = userRole.ciudad;
-            console.warn("la ciudad del pasajero es: " + this.ciudad);
-          })
 
-      }
-
-    })
-  }
 async  abrirModal(){
      const alert=await this.alertController.create(
       {
@@ -118,6 +110,11 @@ async  abrirModal(){
       })
       await alert.present()
     }
-  
+    buscar(){
+      console.log ("aja")
+    //  this.afs.collection('itinerarios',ref=> ref.where('nombre','==',true)).
+    
+    }
+
 
 }

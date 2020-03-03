@@ -67,6 +67,10 @@ item.duracion,item.descripcionCorta,item.descripcionLarga,item.incluye,item.no_i
 
   </ion-card>
 
+  <ion-button (click)="buscar()">
+    <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
+  </ion-button>
+
   <ion-fab vertical="bottom" horizontal="end"  class="botonFab" color="danger" >
     <ion-fab-button routerLink="/contacto-rapido" color="danger" (click)="abrirModal()" >
       <ion-icon name="help-circle-outline"></ion-icon>

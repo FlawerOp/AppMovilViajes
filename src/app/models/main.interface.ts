@@ -8,7 +8,7 @@ export interface MainI{
     recomendaciones: string,
     imagenes: string
 }
-export interface Iitnerario{
+export interface ItinerarioI{
 
     nombre_itinerario,
     grupo_itinerario,
