@@ -1,9 +1,7 @@
-
 ion-content {
   --background: url(/../assets/img/w1.jpg) 100% 0/100% 100% no-repeat;
 }
 .animation {
-
   position: relative;
   top: 1%;
 }
@@ -17,22 +15,20 @@ img {
   margin-bottom: 0;
   left: 43%;
   color: #232323;
-
 }
 
-.img2 {
+.recuperarPassword {
   width: 8%;
   height: auto;
   position: relative;
   top: 5%;
-  margin-top: 45%;
+  margin-top: 20%;
   margin-bottom: 0;
   left: 4%;
   color: #232323;
-
 }
 
-p{
+p {
   color: rgb(143, 143, 143);
   position: relative;
   top: -6.7%;
@@ -54,7 +50,6 @@ p{
   border-radius: 66px;
 }
 
-
 .checkbox {
   padding: 0;
   margin: 0;
@@ -62,7 +57,7 @@ p{
   width: 50%;
   height: 40px;
   position: relative;
-  top:2%;
+  top: 2%;
   text-align: center;
   left: 28%;
   box-shadow: none;
@@ -75,7 +70,6 @@ p{
     font-size: 12px;
     text-align: start;
   }
-
 }
 
 ion-button {
@@ -91,7 +85,7 @@ ion-button {
   border-color: #232323;
 }
 
-.olvidaste { 
+.olvidaste {
   height: 5%;
   position: relative;
   top: 32%;
