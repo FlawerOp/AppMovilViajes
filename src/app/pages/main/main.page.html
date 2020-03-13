@@ -17,9 +17,9 @@
       TODO se encuentre el pasajero en ese momento)-->
     </ion-card>
     <ion-list class="letraslista">
-      <ion-item routerLink="/semana">Itinerario <ion-icon name="calendar" slot="start"></ion-icon>
+      <ion-item routerLink="/semana">mi viaje <ion-icon name="calendar" slot="start"></ion-icon>
       </ion-item>
-      <ion-item routerLink="/main">Mi Itinerario <ion-icon name="sunny" slot="start"></ion-icon>
+      <ion-item routerLink="/main">Para hoy tengo <ion-icon name="sunny" slot="start"></ion-icon>
       </ion-item>
       <ion-item routerLink="/conductores">Mi Hotel <ion-icon name="home" slot="start"></ion-icon>
       </ion-item>
@@ -34,10 +34,10 @@
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-button class="botonmenu" (click)="openCustom()">
-        <ion-icon class="icono" name="menu"></ion-icon>
+        <ion-icon class="icono" name="menu" ></ion-icon>
       </ion-button>
-    </ion-buttons>
-    <ion-title class="dia_toolbar">Mi Dia</ion-title>
+      Menu </ion-buttons>
+    <ion-title class="dia_toolbar">Para hoy tengo</ion-title>
     <ion-buttons slot="end">
       <ion-button class="botonmenu" disabled>
         <ion-icon class="icono" name=""></ion-icon>
@@ -51,6 +51,8 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+<ion-infinite-scroll  position="bottom">
+  
 
   <ion-card *ngFor=" let item of array" (click)="esta(item.titulo,item.url,
 item.duracion,item.descripcionCorta,item.descripcionLarga,item.incluye,item.no_incluye,item.recomendaciones)">
@@ -61,10 +63,9 @@ item.duracion,item.descripcionCorta,item.descripcionLarga,item.incluye,item.no_i
     <div class="cartas">
       <div class="titulo" innerHtml="{{item.titulo}}"></div>
       <p class="p" innerHtml="{{item.descripcionCorta}}"></p>
-      <p class="p2">Tiempo estimado: <b>2 Horas</b></p>
+      <p class="p2">Tiempo estimado: <b>{{item.duracion}}</b></p>
       <br>
     </div>
-
   </ion-card>
 
   <ion-button (click)="buscar()">
@@ -78,4 +79,6 @@ item.duracion,item.descripcionCorta,item.descripcionLarga,item.incluye,item.no_i
   </ion-fab>
 
 
+</ion-infinite-scroll>
+ 
 </ion-content>

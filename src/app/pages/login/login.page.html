@@ -1,31 +1,81 @@
-<ion-content>
+<ion-content padding class="background">
 
-  <img src="../../assets/img/usuario.png" alt="">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col col-12 class="icono">
+        <ion-icon src="assets/person.svg"></ion-icon>
+      </ion-col>
+    </ion-row>
 
-  <ion-input shape="round" fill="outline" class="pasaporte" [(ngModel)]="pasaporte" placeholder="Pasaporte"></ion-input>
-  <br>
-  <ion-input shape="round" fill="outline" class="pasaporte" [(ngModel)]="password" placeholder="Contraseña"
-    type="password"></ion-input>
+    <ion-row>
+      <ion-col col-12 class="input1">
+        <ion-input placeholder="pasaporte" shape="round" fill="outline" class="pasaporte" [(ngModel)]="pasaporte">
+        </ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 class="input2">
+        <ion-input placeholder="Contraseña" shape="round" fill="outline" class="pasaporte" [(ngModel)]="password"
+          type="password">
+        </ion-input>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col col-12 class="sesion">
+        <ion-item class="checkbox">
+          <ion-label>No cerrar sesíon</ion-label>
+          <ion-checkbox color="primary" checked slot="start"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    
+    <ion-row>
+      <ion-col col-12 class="boton">
+        <ion-button checked (click)="Onsubmitlogin()" strong="true" fill="outline" expand="block" shape="round"
+          color="dark">
+          ingresar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+  <!--
+  <div slot="fixed">
+    <img src="../../assets/img/usuario.png" alt="">
+
+    <ion-input shape="round" fill="outline" class="pasaporte" [(ngModel)]="pasaporte" placeholder="Pasaporte">
+    </ion-input>
+    <br>
+    <ion-input shape="round" fill="outline" class="pasaporte" [(ngModel)]="password" placeholder="Contraseña"
+      type="password"></ion-input>
 
 
 
 
-  <ion-item class="checkbox">
-    <ion-label>No cerrar sesíon</ion-label>
-    <ion-checkbox checked slot="start" color="dark"></ion-checkbox>
-  </ion-item>
+    <ion-item class="checkbox">
+      <ion-label>No cerrar sesíon</ion-label>
+      <ion-checkbox checked slot="start" color="dark"></ion-checkbox>
+    </ion-item>
 
 
-  <ion-button checked (click)="Onsubmitlogin()" strong="true" fill="outline" expand="block" shape="round" color="dark">
-    ingresar
-  </ion-button>
+    <ion-button checked (click)="Onsubmitlogin()" strong="true" fill="outline" expand="block" shape="round"
+      color="dark">
+      ingresar
+    </ion-button>
+  </div>
+-->
+</ion-content>
+<!--
+    <div class="recuperarPassword"> 
+    <img  src="../../assets/img/questionmark.png" alt="">
+    <p>¿Olvidaste la <br>contraseña?</p>
+  -->
+<!--separador-->
+<!--TODO ARREGLAR EL METODO DE OLVIDASTE TU CONTRASEÑA-->
+<!--TODO PONER LOS GUARDS-->
 
-  <img class="img2" src="../../assets/img/questionmark.png" alt="">
-  <p>¿Olvidaste la <br>contraseña?</p>
-
-  <!--separador-->
-
-  <!--TODO ARREGLAR EL METODO DE OLVIDASTE TU CONTRASEÑA-->
-  <!--TODO PONER LOS GUARDS-->
-
-  <!--separador final-->
+<!--separador final-->
