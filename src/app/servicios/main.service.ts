@@ -18,7 +18,7 @@ private itinerarioCollection:AngularFirestoreCollection<ItinerarioI>;
 
 main:Observable<MainID[]>;
 itinerario:Observable <ItinerarioID[]>;
-
+itinerarioFiltrado;
 public isPasajero: any = null;
 public isAsesor: any = null;
 public ciudad : any = null;
@@ -69,8 +69,6 @@ public itinerarioSelected={
         return {id,...data};
       }))
     );
-
-this.primerQuery();
    } //fin del constructor
 
 
@@ -102,10 +100,54 @@ this.primerQuery();
     })
   }
 
-  primerQuery() {
+  consultas() {
+    //-----------------------Intento1-----------------------------------------------
+    // var itinerariosRef = this.afs.firestore.collection('itinerarios');
+    //console.warn (itinerariosRef);
+    //-----------------------Fin Intento1-----------------------------------------------
+    //-----------------------Intento2-----------------------------------------------
+    //  var query = this.afs.collection('itinerarios', ref => ref.where('nombre', '==', "Hora Sirviendo"));
+    // console.warn(query);
+    //-----------------------Fin Intento2-----------------------------------------------
+    //-----------------------Intento3-----------------------------------------------
+ /*   const size$ = new Subject<void>();
+    const queryObservable = size$.pipe(
+      switchMap(nombre =>
+        this.afs.collection('itinerarios').valueChanges()
+      )
+    )
+    queryObservable.subscribe(queriedItems => {
+      console.warn(queriedItems);
+    });*/
+    //-----------------------Fin Intento3-----------------------------------------------
+    //-----------------------Intento4-----------------------------------------------
+    return new Promise((resolve, reject) => {
+      this.afs.firestore.collection('itinerarios')
+      .where('conductor', 'array-contains', "Fabian")
+        .get().then((querySnapshot) => {
+          let arr = [];
+          querySnapshot.forEach(function (doc) {
+            var obj = JSON.parse(JSON.stringify(doc.data()));
+            obj.id = doc.id;
+            //obj.eventId = doc.id;
+            arr.push(obj);
+          });
 
-      
-    }
+          if (arr.length > 0) {
+            console.log(arr);
+            resolve(arr);
+            this.itinerarioFiltrado=arr
+          } else {
+            console.log("No such document!");
+            resolve(null);
+          }
+        })
+        .catch((error: any) => {
+          reject(error);
+        });
+    });
+    //-----------------------Fin Intento4-----------------------------------------------
+  }
 
 
 

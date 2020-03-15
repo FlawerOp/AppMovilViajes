@@ -46,7 +46,20 @@
   </ion-toolbar>
 </ion-header>
 
+<p>Nuevos Filtros </p>
 
+<div *ngFor="let item of itinerarioFiltrado">
+<p>  {{item.asesor}}</p>  
+  <p> {{item.conductor}}</p> 
+   <p>  {{item.eventos}} </p>
+   <p>  {{item.grupo}}</p>
+    <p> {{item.guia}}  </p>
+    <p> {{item.horaInicial}} </p>
+  <p> {{item.horaFinal}}  </p>
+  <p> {{item.hotel}}  </p>
+  
+</div>
+<!--
 <ion-content>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
@@ -68,10 +81,6 @@ item.duracion,item.descripcionCorta,item.descripcionLarga,item.incluye,item.no_i
     </div>
   </ion-card>
 
-  <ion-button (click)="buscar()">
-    <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
-  </ion-button>
-
   <ion-fab vertical="bottom" horizontal="end"  class="botonFab" color="danger" >
     <ion-fab-button routerLink="/contacto-rapido" color="danger" (click)="abrirModal()" >
       <ion-icon name="help-circle-outline"></ion-icon>
@@ -82,3 +91,4 @@ item.duracion,item.descripcionCorta,item.descripcionLarga,item.incluye,item.no_i
 </ion-infinite-scroll>
  
 </ion-content>
+-->

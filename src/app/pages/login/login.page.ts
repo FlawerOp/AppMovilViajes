@@ -14,6 +14,7 @@ import { ModalController } from "@ionic/angular";
 })
 export class LoginPage implements OnInit {
 
+  GrupoUsuarioActual;
   pasaporte: string;
   password: string;
   Newpassword: string;
@@ -47,6 +48,10 @@ export class LoginPage implements OnInit {
           this.abrirAlertCambioConstraseña();
         }
       }
+      this.authService.consultarUserNameUsuarioActual();
+      this.authService.consultarGrupoUsuarioActual();
+      this.authService.consultarItinerariodelUsuario();
+
     }).catch(err => this.abrirAlertBadPassword());
 
   }
@@ -136,7 +141,6 @@ export class LoginPage implements OnInit {
         this.userUid = auth.uid;
         this.authService.isUserPasajero(this.userUid, this.ciudad)
           .subscribe(userRole => {
-            console.warn(userRole);
             this.isPasajero = userRole.Pasajero;
             console.warn("resultado pasajero=" + this.isPasajero);
             this.isAsesor = userRole.Asesor;
