@@ -55,6 +55,7 @@ export class MainPage implements OnInit {
     })
     this.authService.imprimir();
     this.getCiudad();
+    console.log(this.authService.EventosDelUsuarioActual)
 
 
   }

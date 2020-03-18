@@ -20,6 +20,8 @@ export class OnboardingPage implements OnInit {
   public userUid: string = null;
   ngOnInit() {
     this.getCurrentUser();
+    this.authService.consultarUserNameUsuarioActual();
+    this.authService.consultarItinerariodelUsuario();
   }
 
   skip() {
