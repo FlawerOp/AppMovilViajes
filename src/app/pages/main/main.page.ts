@@ -1,22 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { finalize, switchMap } from 'rxjs/operators'
-import { ToastController, LoadingController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { finalize, switchMap } from "rxjs/operators";
+import { ToastController, LoadingController } from "@ionic/angular";
+import { Router } from "@angular/router";
 import { MainService } from "../../servicios/main.service";
-import { AuthService } from 'src/app/servicios/auth.service';
-import { UserInterface } from '../../../app/models/user';
-import { MenuController } from '@ionic/angular';
+import { AuthService } from "src/app/servicios/auth.service";
+import { UserInterface } from "../../../app/models/user";
+import { MenuController } from "@ionic/angular";
 import { AlertController } from "@ionic/angular";
 import { ModalController } from "@ionic/angular";
-import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/firestore";
-import { Subject } from 'rxjs';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection
+} from "@angular/fire/firestore";
+import { Subject } from "rxjs";
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.page.html',
-  styleUrls: ['./main.page.scss'],
+  selector: "app-main",
+  templateUrl: "./main.page.html",
+  styleUrls: ["./main.page.scss"]
 })
 export class MainPage implements OnInit {
-
   private arraynuevo: any[];
   uid;
   public isPasajero: any = null;
@@ -37,8 +39,7 @@ export class MainPage implements OnInit {
     private alertController: AlertController,
     private modalController: ModalController,
     private afs: AngularFirestore
-
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.authService.isAuth().subscribe(user => {
@@ -50,42 +51,57 @@ export class MainPage implements OnInit {
     });
     this.authService.consultarUserNameUsuarioActual();
     this.authService.consultarGrupoUsuarioActual();
-    this.authService.consultarItinerariodelUsuario().then(res=>{
-      this.itinerarioFiltrado=res;
-    })
-    this.authService.imprimir();
+    this.authService.consultarItinerariodelUsuario().then(res => {
+      this.itinerarioFiltrado = res;
+    });
     this.getCiudad();
-    console.log(this.authService.EventosDelUsuarioActual)
-
-
+    this.consultarEventosUsuarioActual();
+    console.log(this.authService.EventosDelUsuarioActual);
+    this.authService.consultarEventosDelItinerario();
   }
 
   openCustom() {
-    this.menu.enable(true, 'main');
-    this.menu.open('main');
+    this.menu.enable(true, "main");
+    this.menu.open("main");
   }
   atras() {
-    this.menu.close('main');
+    this.menu.close("main");
   }
 
   user: UserInterface = {
-    name: '',
-    email: ''
+    name: "",
+    email: ""
   };
 
-  public providerId: string = 'null';
+  public providerId: string = "null";
 
-  esta(titulo, url, duracion, descripcionCorta, descripcionLarga, incluye,
-    no_incluye, recomendaciones) {
-
-    this.Router.navigate(["/descripcion/", titulo, url, duracion, descripcionCorta,
-      descripcionLarga, incluye, no_incluye, recomendaciones]);
+  esta(
+    titulo,
+    url,
+    duracion,
+    descripcionCorta,
+    descripcionLarga,
+    incluye,
+    no_incluye,
+    recomendaciones
+  ) {
+    this.Router.navigate([
+      "/descripcion/",
+      titulo,
+      url,
+      duracion,
+      descripcionCorta,
+      descripcionLarga,
+      incluye,
+      no_incluye,
+      recomendaciones
+    ]);
   }
 
   doRefresh(event) {
     this.ngOnInit();
     setTimeout(() => {
-      console.log('Async operation has ended');
+      console.log("Async operation has ended");
       event.target.complete();
     }, 1500);
   }
@@ -94,28 +110,30 @@ export class MainPage implements OnInit {
     this.Router.navigate(["/contacto-rapido"]);
   }
 
-
-  async  abrirModal() {
-    const alert = await this.alertController.create(
-      {
-        header: "Bienvenido a la seccion de ayuda",
-        subHeader: "aqui podras contactarte con tu asesor turistico en caso de tener problemas, dudas, felicitaciones, o cualquier otra cosa que necesites...",
-        message: 'simplemente haz click en tu asesor y escribe lo que necesites',
-        buttons: [{
-          text: 'Ok, llevame allí', handler: () => {
+  async abrirModal() {
+    const alert = await this.alertController.create({
+      header: "Bienvenido a la seccion de ayuda",
+      subHeader:
+        "aqui podras contactarte con tu asesor turistico en caso de tener problemas, dudas, felicitaciones, o cualquier otra cosa que necesites...",
+      message: "simplemente haz click en tu asesor y escribe lo que necesites",
+      buttons: [
+        {
+          text: "Ok, llevame allí",
+          handler: () => {
             this.irAlChat();
           }
-        }]
-      })
-    await alert.present()
+        }
+      ]
+    });
+    await alert.present();
   }
-
 
   getCiudad() {
     this.authService.isAuth().subscribe(auth => {
       if (auth) {
         this.userUid = auth.uid;
-        this.authService.isUserPasajero(this.userUid, this.ciudad)
+        this.authService
+          .isUserPasajero(this.userUid, this.ciudad)
           .subscribe(userRole => {
             console.warn(userRole);
             this.isPasajero = userRole.Pasajero;
@@ -124,12 +142,12 @@ export class MainPage implements OnInit {
             console.warn("resultado asesor=" + this.isAsesor);
             this.ciudad = userRole.ciudad;
             console.warn("la ciudad del pasajero es: " + this.ciudad);
-          })
-
+          });
       }
-
-    })
+    });
   }
 
-
+  consultarEventosUsuarioActual() {
+    console.log (this.authService.EventosDelUsuarioActual);
+  }
 }

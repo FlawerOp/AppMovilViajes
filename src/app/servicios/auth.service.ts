@@ -134,10 +134,11 @@ export class AuthService {
             this.itinerarioUsuarioActual = arrayItinerarioUsuarioActual;
             console.warn(this.itinerarioUsuarioActual);
             this.AsesorDelUsuarioActual =
-            arrayItinerarioUsuarioActual[0].asesor;
+              arrayItinerarioUsuarioActual[0].asesor;
             console.warn(this.AsesorDelUsuarioActual);
-            this.EventosDelUsuarioActual=arrayItinerarioUsuarioActual[0].eventos;
-            console.warn(this.EventosDelUsuarioActual);
+            this.EventosDelUsuarioActual =
+              arrayItinerarioUsuarioActual[0].eventos[0];
+            console.log(this.EventosDelUsuarioActual);
           } else {
             console.warn("la cagó en la consulta ome arepa ome");
             resolve(null);
@@ -149,39 +150,33 @@ export class AuthService {
     });
   }
 
-  consultarAsesorDelItinerario() {
-   /* return new Promise((resolve, reject) => {
-      console.log(this.AsesorDelUsuarioActual);
+  consultarEventosDelItinerario() {
+    return new Promise((resolve, reject) => {
       this.db.firestore
-        .collection("contactos")
-        .where("nombre", "==", this.AsesorDelUsuarioActual)
+        .collection("Tours")
+        .where("Tours", "==", "Colombia Experiencial -Dia 3. Bogota – Medellin.")
         .get()
-        .then(queryAsesorUsuarioActual => {
-          const arrayAsesorUsuarioActual = [];
-          queryAsesorUsuarioActual.forEach(function(docAsesor) {
-            var objAsesores = JSON.parse(JSON.stringify(docAsesor.data()));
-            objAsesores.id = docAsesor.id;
-            arrayAsesorUsuarioActual.push(objAsesores);
+        .then(queryEventosUsuario => {
+          const arrayEventosUsuarioActual = [];
+          queryEventosUsuario.forEach(function(docEventos) {
+            var objEventos = JSON.parse(JSON.stringify(docEventos.data()));
+            objEventos.id = docEventos.id;
+            arrayEventosUsuarioActual.push(objEventos);
           });
-          if (arrayAsesorUsuarioActual.length > 0) {
-            resolve(arrayAsesorUsuarioActual);
-            this.AsesorDelUsuarioActual = arrayAsesorUsuarioActual;
-            console.warn(this.AsesorDelUsuarioActual);
+
+          if (arrayEventosUsuarioActual.length > 0) {
+            resolve(arrayEventosUsuarioActual);
+            console.log(arrayEventosUsuarioActual);
           } else {
-            console.warn("quedo mal la consulta");
+            console.warn("la consulta esta mal");
             resolve(null);
           }
         })
         .catch((error: any) => {
           reject(null);
         });
-    });*/
+    });
   }
 
-  imprimir() {
-    console.error(this.userNameUsuarioActual);
-    console.error(this.grupoFiltradoUsuarioActual);
-    console.error(this.itinerarioUsuarioActual);
-    console.log(this.AsesorDelUsuarioActual);
-  }
+ 
 }
