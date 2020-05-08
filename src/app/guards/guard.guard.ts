@@ -17,7 +17,7 @@ export class GuardGuard implements CanActivate {
     .pipe(tap(auth=>{
       if (!auth) {
         this.router.navigate(['/login']);
-        alert ("como te pasaste el guard? crack")
+        alert ("¿como te pasaste el guard?")
       }
     }))
  

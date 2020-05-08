@@ -7,20 +7,29 @@ import { AuthService } from 'src/app/servicios/auth.service';
 import { UserInterface } from '../../../app/models/user';
 import { GuiasService } from "../../servicios/guias.service";
 import { MenuController } from '@ionic/angular';
-
+import { AngularFirestore } from "@angular/fire/firestore";
 @Component({
   selector: 'app-guias',
   templateUrl: './guias.page.html',
   styleUrls: ['./guias.page.scss'],
 })
 export class GuiasPage implements OnInit {
-  array: any;
-  array2: any;
+
 
   public isPasajero: any = null;
   public isAsesor: any = null;
   public ciudad: any = null;
   public userUid: string = null;
+
+
+  idUsuarioActual;
+  GuiaLocalStorage;
+  GuiaUsuarioActual; 
+  user: UserInterface = {
+    name: "",
+    email: ""
+  };
+
 
   constructor(
     private guiaService: GuiasService,
@@ -29,31 +38,26 @@ export class GuiasPage implements OnInit {
     private Router: Router,
     private toastController: ToastController,
     private authService: AuthService,
+    private afs: AngularFirestore,
     private menu: MenuController) { }
 
   ngOnInit() {
-    this.guiaService.getAllGuias().subscribe(res => this.array2 = res);
-    this.mainService.getAllEventos().subscribe(res => {
-      this.array = res;
-      console.log(this.array);
-    });
-
+    localStorage.getItem('guia asignado');
+    this.GuiaLocalStorage=localStorage.getItem('guia asignado');
     this.authService.isAuth().subscribe(user => {
       if (user) {
         console.log(user);
         this.user.name = user.displayName;
         this.user.email = user.email;
-      //  this.user.photoUrl = user.photoURL;
+        this.idUsuarioActual = user.uid;
+        console.log(this.idUsuarioActual);
       }
     });
     this.getCiudad();
-  }
-  user: UserInterface = {
-    name: '',
-    email: '',
-  };
+    this.ConsultarInfoGuiaUsuarioActual();
 
-  public providerId: string = 'null';
+  }
+
   openCustom() {
     this.menu.enable(true, 'guias');
     this.menu.open('guias');
@@ -88,10 +92,37 @@ export class GuiasPage implements OnInit {
             this.ciudad = userRole.ciudad;
             console.warn("la ciudad del pasajero es: " + this.ciudad);
           })
-
       }
-
     })
+  }
+
+  ConsultarInfoGuiaUsuarioActual() {
+    return new Promise((resolve, reject) => {
+      this.afs.firestore.collection("guias")
+        .where("nombre", "==", this.GuiaLocalStorage)
+        .get()
+        .then(queryGuiaUsuario => {
+          const arrayGuiaUsuarioActual = [];
+          queryGuiaUsuario.forEach(function (docGuias) {
+            var objGuias = JSON.parse(JSON.stringify(docGuias.data()));
+            objGuias.id = docGuias.id;
+            arrayGuiaUsuarioActual.push(objGuias);
+          });
+
+          if (arrayGuiaUsuarioActual.length > 0) {
+            resolve(arrayGuiaUsuarioActual);
+            this.GuiaUsuarioActual = arrayGuiaUsuarioActual;
+            console.warn("la info completa del guia asignado es:");
+            console.warn(this.GuiaUsuarioActual);
+          }
+          else {
+            console.warn("la consulta del guia esta mal");
+            reject(null);
+          }
+
+        });
+    });
+
   }
 
 

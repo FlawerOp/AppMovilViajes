@@ -9,7 +9,7 @@
 
     <ion-row>
       <ion-col col-12 class="input1">
-        <ion-input placeholder="pasaporte" shape="round" fill="outline" class="pasaporte" [(ngModel)]="pasaporte">
+        <ion-input placeholder="Nombre de usuario" shape="round" fill="outline" class="pasaporte" [(ngModel)]="pasaporte">
         </ion-input>
       </ion-col>
     </ion-row>
@@ -35,7 +35,7 @@
     
     <ion-row>
       <ion-col col-12 class="boton">
-        <ion-button checked (click)="Onsubmitlogin()" strong="true" fill="outline" expand="block" shape="round"
+        <ion-button checked (click)="Onsubmitlogin() ; getRol()" strong="true" fill="outline" expand="block" shape="round"
           color="dark">
           ingresar
         </ion-button>

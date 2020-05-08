@@ -17,6 +17,8 @@ import { formatDate } from '@angular/common';
 })
 export class SemanaPage implements OnInit {
 
+  nombreUsuario;
+
   event = {
     title: '',
     descm: '',
@@ -57,6 +59,7 @@ export class SemanaPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.nombreUsuario=localStorage.getItem('userid');
     this.resetEvent();
     this.mainService.getAllEventos().subscribe(res => {
       this.array = res;

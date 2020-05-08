@@ -6,6 +6,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AlertController } from "@ionic/angular";
 import { ModalController } from "@ionic/angular";
+import { error } from 'console';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginPage implements OnInit {
   pasaporte: string;
   password: string;
   Newpassword: string;
+  nombreUsuario;
   uid;
   public isPasajero: any = null;
   public isAsesor: any = null;
@@ -35,8 +37,9 @@ export class LoginPage implements OnInit {
 
 
   Onsubmitlogin() {
+   
+    console.log(this.pasaporte,this.password)
     this.authService.login(this.pasaporte, this.password).then(res => {
-      localStorage.setItem('userid', this.pasaporte);
       this.getRol();
       if (this.isAsesor == true) {
         this.router.navigate(["/contacto-rapido"]);
@@ -49,11 +52,14 @@ export class LoginPage implements OnInit {
         }
       }
       this.authService.consultarUserNameUsuarioActual();
-      this.authService.consultarGrupoUsuarioActual();
-      this.authService.consultarItinerariodelUsuario();
+     this.authService.consultarUserNameUsuarioActual().then(username=>{
+       this.nombreUsuario=username[0].userName
+       console.log(this.nombreUsuario)
+       localStorage.setItem('userid', this.nombreUsuario); //eso es para que quede guardada la variable en el almacenamiento local del dispositivo 
+     })
 
     }).catch(err => this.abrirAlertBadPassword());
-
+    
   }
 
   async abrirAlertBienvenidaAsesor() {
@@ -142,13 +148,16 @@ export class LoginPage implements OnInit {
         this.authService.isUserPasajero(this.userUid, this.ciudad)
           .subscribe(userRole => {
             this.isPasajero = userRole.Pasajero;
-            console.warn("resultado pasajero=" + this.isPasajero);
+            console.log("resultado pasajero=" + this.isPasajero);
             this.isAsesor = userRole.Asesor;
-            console.warn("resultado asesor=" + this.isAsesor);
+            console.log("resultado asesor=" + this.isAsesor);
             this.ciudad = userRole.ciudad;
-            console.warn("la ciudad del pasajero es: " + this.ciudad);
+            console.log("la ciudad del pasajero es: " + this.ciudad);
+            localStorage.setItem('ciudad',this.ciudad);
+            
           })
-      }
+
+        }
     })
   }
 

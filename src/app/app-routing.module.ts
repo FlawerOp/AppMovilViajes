@@ -13,7 +13,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/contacto-rapido/contacto-rapido.module').then( m => m.ContactoRapidoPageModule)
   },
   {
-    path: 'descripcion/:titulo/:url/:duracion/:descripcionCorta/:descripcionLarga/:incluye/:no_incluye/:recomendaciones',
+    path: 'descripcion/:titulo/:url/:duracion/:descripcion/:incluye/:no_incluye/:recomendaciones',
     loadChildren: () => import('./pages/descripcion/descripcion.module').then( m => m.DescripcionPageModule)
   },
   {
@@ -47,7 +47,11 @@ const routes: Routes = [
   {
     path: 'chat/:nombre/:telefono',
     loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule),canActivate:[GuardGuard]
+  },  {
+    path: 'ciudad',
+    loadChildren: () => import('./pages/ciudad/ciudad.module').then( m => m.CiudadPageModule)
   },
+
 
 ];
 

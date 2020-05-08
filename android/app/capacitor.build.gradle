@@ -10,9 +10,9 @@ android {
 apply from: "../capacitor-cordova-android-plugins/cordova.variables.gradle"
 dependencies {
 
-
+    implementation "com.airbnb.android:lottie:3.3.1"
 }
-
+apply from: "../../node_modules/cordova-plugin-lottie-splashscreen/src/android/build-extras.gradle"
 
 if (hasProperty('postBuildExtras')) {
   postBuildExtras()

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { AuthService } from "../../servicios/auth.service";
-import { AngularFireAuth } from "@angular/fire/auth";
-import { UserInterface } from "../../models/user";
+import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/firestore";
+
+
 @Component({
   selector: 'app-onboarding',
   templateUrl: './onboarding.page.html',
@@ -12,20 +13,25 @@ import { UserInterface } from "../../models/user";
 export class OnboardingPage implements OnInit {
 
   constructor(public navCtrl: NavController, private Router: Router,
-    private authService: AuthService) { }
+    private authService: AuthService, private alertController:AlertController
+    ,private afs: AngularFirestore,) { }
 
   public isPasajero: any = null;
   public isAsesor: any = null;
   public ciudad : any = null;
   public userUid: string = null;
+
+  nombreUsuario;
+  Mensaje;
+
   ngOnInit() {
-    this.getCurrentUser();
-    this.authService.consultarUserNameUsuarioActual();
-    this.authService.consultarItinerariodelUsuario();
+    this.nombreUsuario=localStorage.getItem('userid');
+    this.ciudad=localStorage.getItem('ciudad');
+    console.warn(this.nombreUsuario,this.ciudad);
   }
 
   skip() {
-    this.Router.navigate(["/main"]);
+    this.Router.navigate(["/ciudad"]);
   }
 
   getCurrentUser() {
@@ -35,19 +41,35 @@ export class OnboardingPage implements OnInit {
         console.log (this.userUid);
         this.authService.isUserPasajero(this.userUid,this.ciudad)
           .subscribe(userRole => {
-            console.warn(userRole);
             this.isPasajero=userRole.Pasajero;
-            console.warn("resultado pasajero="+this.isPasajero);
+            console.log("resultado pasajero="+this.isPasajero);
             this.isAsesor=userRole.Asesor;
-            console.warn("resultado asesor="+this.isAsesor);
+            console.log("resultado asesor="+this.isAsesor);
             this.ciudad=userRole.ciudad;
-            console.warn ("la ciudad del pasajero es: "+ this.ciudad);
+           // console.warn (this.ciudad);
           }) 
       }
     })
   }
 
-  
 
+
+
+ /*  async abrirModalBienvenidaCiudad() {
+    const alert = await this.alertController.create({
+      header: "¡Bienvenido a "+this.ciudad+"!",
+      subHeader:"un poco de la ciudad: ",
+      message:""+this.Mensaje[0].descripcion,
+      buttons: [
+        {
+          text: "Aceptar",
+          handler: () => {
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+*/
 
 }

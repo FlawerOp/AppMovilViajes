@@ -26,15 +26,14 @@ export class AuthService {
   GuiaDelUsuarioActual;
   HotelDelUsuarioActual;
 
-  constructor(private aFauth: AngularFireAuth, private db: AngularFirestore) {}
+  constructor(private aFauth: AngularFireAuth, private db: AngularFirestore) { }
 
   login(pasaporte: string, password: string) {
     return new Promise((resolve, rejected) => {
       this.aFauth.auth
-        .signInWithEmailAndPassword(pasaporte + "@hotmail.com", password)
+        .signInWithEmailAndPassword(pasaporte + "@a.com", password)
         .then(userData => {
           resolve(userData);
-          console.log(userData);
           console.warn(userData.user.uid);
           this.idUsuarioActual = userData.user.uid;
         })
@@ -48,7 +47,6 @@ export class AuthService {
 
   isUserPasajero(userUid, ciudad) {
     return this.db.doc<UserInterface>(`users/${userUid}`).valueChanges();
-    return this.db.doc<UserInterface>(`users/${ciudad}`).valueChanges();
   }
   isUserAsesor(userUid) {
     return this.db.doc<UserInterface>(`users/${userUid}`).valueChanges();
@@ -62,7 +60,7 @@ export class AuthService {
         .get()
         .then(querySnapshot => {
           let arr = [];
-          querySnapshot.forEach(function(doc) {
+          querySnapshot.forEach(function (doc) {
             var obj = JSON.parse(JSON.stringify(doc.data()));
             obj.id = doc.id;
             //obj.eventId = doc.id;
@@ -78,7 +76,6 @@ export class AuthService {
             console.error("No existe el documento solicitado!");
             resolve(null);
           }
-          console.warn(this.userNameFiltrado);
         });
     });
   }
@@ -91,7 +88,7 @@ export class AuthService {
         .get()
         .then(queryGrupos => {
           const arrayGrupoUsuarioActual = [];
-          queryGrupos.forEach(function(docGrupo) {
+          queryGrupos.forEach(function (docGrupo) {
             var objGrupos = JSON.parse(JSON.stringify(docGrupo.data()));
             objGrupos.id = docGrupo.id;
             arrayGrupoUsuarioActual.push(objGrupos);
@@ -99,7 +96,7 @@ export class AuthService {
           if (arrayGrupoUsuarioActual.length > 0) {
             resolve(arrayGrupoUsuarioActual);
             this.grupoFiltradoUsuarioActual =
-              arrayGrupoUsuarioActual[0].nombre_grupo;
+              arrayGrupoUsuarioActual;
             console.warn(this.grupoFiltradoUsuarioActual);
           } else {
             console.log("no existe esa monda po weon");
@@ -114,69 +111,5 @@ export class AuthService {
     });
   }
 
-  consultarItinerariodelUsuario() {
-    return new Promise((resolve, reject) => {
-      this.db.firestore
-        .collection("itinerarios")
-        .where("grupo", "array-contains", this.grupoFiltradoUsuarioActual)
-        .get()
-        .then(queryItinerarioUsuarioActual => {
-          const arrayItinerarioUsuarioActual = [];
-          queryItinerarioUsuarioActual.forEach(function(docItinerario) {
-            var objItinerarios = JSON.parse(
-              JSON.stringify(docItinerario.data())
-            );
-            objItinerarios.id = docItinerario.id;
-            arrayItinerarioUsuarioActual.push(objItinerarios);
-          });
-          if (arrayItinerarioUsuarioActual.length > 0) {
-            resolve(arrayItinerarioUsuarioActual);
-            this.itinerarioUsuarioActual = arrayItinerarioUsuarioActual;
-            console.warn(this.itinerarioUsuarioActual);
-            this.AsesorDelUsuarioActual =
-              arrayItinerarioUsuarioActual[0].asesor;
-            console.warn(this.AsesorDelUsuarioActual);
-            this.EventosDelUsuarioActual =
-              arrayItinerarioUsuarioActual[0].eventos[0];
-            console.log(this.EventosDelUsuarioActual);
-          } else {
-            console.warn("la cagó en la consulta ome arepa ome");
-            resolve(null);
-          }
-        })
-        .catch((error: any) => {
-          reject(null);
-        });
-    });
-  }
 
-  consultarEventosDelItinerario() {
-    return new Promise((resolve, reject) => {
-      this.db.firestore
-        .collection("Tours")
-        .where("Tours", "==", "Colombia Experiencial -Dia 3. Bogota – Medellin.")
-        .get()
-        .then(queryEventosUsuario => {
-          const arrayEventosUsuarioActual = [];
-          queryEventosUsuario.forEach(function(docEventos) {
-            var objEventos = JSON.parse(JSON.stringify(docEventos.data()));
-            objEventos.id = docEventos.id;
-            arrayEventosUsuarioActual.push(objEventos);
-          });
-
-          if (arrayEventosUsuarioActual.length > 0) {
-            resolve(arrayEventosUsuarioActual);
-            console.log(arrayEventosUsuarioActual);
-          } else {
-            console.warn("la consulta esta mal");
-            resolve(null);
-          }
-        })
-        .catch((error: any) => {
-          reject(null);
-        });
-    });
-  }
-
- 
 }

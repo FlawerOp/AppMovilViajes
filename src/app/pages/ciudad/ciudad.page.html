@@ -1,4 +1,4 @@
-<ion-menu side="start" menuId="guias" class="my-custom-menu">
+<ion-menu side="start" menuId="main" class="my-custom-menu">
   <ion-header class="menutop">
     <ion-buttons slot="end">
       <ion-button class="botonmenu2" (click)="atras()">
@@ -11,8 +11,10 @@
       <ion-avatar class="avatare">
         <img src="../../assets/img/bandera.jpg" />
       </ion-avatar>
-      <h5>{{user.email}}</h5>
+      <h5>{{userNameFiltrado}}</h5>
       <p>{{ciudad}}</p>
+      <!--TODO traer la ciudad del pasajero (aunque es mejor si se muestra la ciudad donde 
+      TODO se encuentre el pasajero en ese momento)-->
     </ion-card>
     <ion-list class="letraslista">
       <ion-item routerLink="/semana">mi viaje <ion-icon name="calendar" slot="start"></ion-icon>
@@ -35,9 +37,10 @@
     <ion-buttons slot="start">
       <ion-button class="botonmenu" (click)="openCustom()">
         <ion-icon class="icono" name="menu"></ion-icon>
-      </ion-button>Menu
+      </ion-button>
+      Menu
     </ion-buttons>
-    <ion-title class="dia_toolbar">Guias</ion-title>
+    <ion-title class="dia_toolbar">acerca de {{ciudad}}</ion-title>
     <ion-buttons slot="end">
       <ion-button class="botonmenu" disabled>
         <ion-icon class="icono" name=""></ion-icon>
@@ -47,28 +50,42 @@
 </ion-header>
 
 
-<ion-content>
 
+<ion-content>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-card *ngFor="let item of GuiaUsuarioActual" (click)="esta(item.nombre,item.telefono,item.foto)">
-    
-    <div class="imagenes">
-      <img mat-card-image src="{{item.foto}}" />
-    </div>
+  <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-infinite-scroll position="bottom">
 
-    <div class="cartas">
-      <div class="titulo" innerHtml="{{item.nombre}}"></div>
-    </div>
-    
-  </ion-card>
 
-  <ion-fab vertical="bottom" horizontal="end" class="botonFab" color="danger">
-    <ion-fab-button routerLink="/contacto-rapido" color="danger" (click)="abrirModal()">
-      <ion-icon name="help-circle-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+      <ion-card *ngFor=" let item of Mensaje" >
 
-</ion-content>
+        <div class="imagenes">
+          <img mat-card-image src="{{item.foto}}" />
+        </div>
+        <div class="cartas">
+          <div class="titulo" innerHtml="{{item.titulo}}"></div>
+          <p class="p" innerHtml="{{item.descripcion}}"></p>
+          <p class="p2">Clima: <b>{{item.clima}}</b></p>
+          <p class="p2">Gentilicio: <b>{{item.gentilicio}}</b></p>
+          <p class="p2">Moneda: <b>{{item.moneda}}</b></p>
+          
+          <br>
+        </div>
+      </ion-card>
+
+      <ion-fab vertical="bottom" horizontal="end" class="botonFab" color="danger">
+        <ion-fab-button routerLink="/contacto-rapido" color="danger" (click)="abrirModalSeccionAyuda()">
+          <ion-icon name="chatbubbles"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+
+
+    </ion-infinite-scroll>
+
+  </ion-content>
