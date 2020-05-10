@@ -11,17 +11,17 @@
       <ion-avatar class="avatare">
         <img src="../../assets/img/bandera.jpg" />
       </ion-avatar>
-      <h5>{{user.email}}</h5>
-      <p>ciudad turista</p>
+      <h5>{{nombreUsuario}}</h5>
+      <p>{{ciudad}}</p>
     </ion-card>
     <ion-list class="letraslista">
-      <ion-item routerLink="/semana">Itinerario <ion-icon name="calendar" slot="start"></ion-icon>
+      <ion-item routerLink="/semana">mi viaje <ion-icon name="calendar" slot="start"></ion-icon>
       </ion-item>
-      <ion-item routerLink="/main">Mi Itinerario  <ion-icon name="sunny" slot="start"></ion-icon>
+      <ion-item routerLink="/main">Para hoy tengo <ion-icon name="sunny" slot="start"></ion-icon>
       </ion-item>
-      <ion-item routerLink="/guias">Guias <ion-icon name="people" slot="start"></ion-icon>
+      <ion-item routerLink="/mapa"> Mi Hotel <ion-icon name="bed" slot="start"></ion-icon>
       </ion-item>
-      <ion-item routerLink="/conductores">Mi Hotel <ion-icon name="home" slot="start"></ion-icon>
+      <ion-item routerLink="/conductores">Mi conductor <ion-icon name="car" slot="start"></ion-icon>
       </ion-item>
       <ion-item routerLink="/contacto-rapido">Asesor Turistico<ion-icon name="call" slot="start"></ion-icon>
       </ion-item>
@@ -35,7 +35,7 @@
     <ion-buttons slot="start">
       <ion-button class="botonmenu" (click)="openCustom()">
         <ion-icon class="icono" name="menu"></ion-icon>
-      </ion-button>
+      </ion-button>Menu
     </ion-buttons>
     <ion-title class="dia_toolbar">Asesor Turistico</ion-title>
     <ion-buttons slot="end">
@@ -53,19 +53,19 @@
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
-  
-    <ion-card *ngFor="let item of array2" (click)="esta(item.nombre,item.telefono)">
+
+    <ion-card *ngFor="let item of AsesorDelUsuarioActual" (click)="esta(item.userName,item.telefono)">
       <div class="imagenes">
         <img mat-card-image src="../../assets/img/ascs.png" />
       </div>
-  
+
       <div class="cartas">
-        <div class="titulo" innerHtml="{{item.nombre}}"></div>
+        <div class="titulo" innerHtml="{{item.userName}}"></div>
         <p class="p">Telefono:</p>
         <p class="p2" innerHtml="{{item.telefono}}"></p>
       </div>
-      
+
     </ion-card>
-  
+
   </ion-content>
 </ion-content>

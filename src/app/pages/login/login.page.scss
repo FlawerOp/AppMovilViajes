@@ -1,9 +1,62 @@
-ion-content {
-  --background: url(/../assets/img/w1.jpg) 100% 0/100% 100% no-repeat;
+ion-content.background {
+  --background: #34490d /*url(/../assets/img/w1.jpg)  0 0/100% 100% no-repeat*/;
 }
 
-.animation {
+ion-icon{
+  height: 15em;
+  width: 8em;
+  position: relative;
+}
+.icono{
+  position: relative;
+  top: 2em;
+  left: 35%;
+}
+.pasaporte {
+  text-align: center;
+  background: white;
+  position: relative;
+  color: rgb(0, 0, 0);
+  border-radius: 66px;
+}
 
+.input2{
+  position: relative;
+  top: 2em;
+}
+.sesion{
+  position: relative;
+  top: 4em;
+}
+
+.boton{
+  position: relative;
+  top: 6em;
+}
+
+.checkbox {
+  padding: 0;
+  margin: 0;
+  --background: transparent;
+  width: 50%;
+  height: 40px;
+  position: relative;
+  top: 2%;
+  text-align: center;
+  left: 28%;
+  box-shadow: none;
+  text-shadow: none;
+  border: none;
+  text-decoration: none;
+  color: #232323;
+
+  ion-label {
+    font-size: 12px;
+    text-align: start;
+  }
+}
+/*
+.animation {
   position: relative;
   top: 1%;
 }
@@ -17,22 +70,20 @@ img {
   margin-bottom: 0;
   left: 43%;
   color: #232323;
-
 }
 
-.img2 {
+.recuperarPassword {
   width: 8%;
   height: auto;
   position: relative;
   top: 5%;
-  margin-top: 45%;
+  margin-top: 20%;
   margin-bottom: 0;
   left: 4%;
   color: #232323;
-
 }
 
-p{
+p {
   color: rgb(143, 143, 143);
   position: relative;
   top: -6.7%;
@@ -41,18 +92,6 @@ p{
   width: 20%;
 }
 
-.pasaporte {
-  text-align: center;
-  background: white;
-  width: 65%;
-  height: 30px;
-  position: relative;
-  right: 62.5%;
-  left: 20%;
-  color: rgb(0, 0, 0);
-  top: 3%;
-  border-radius: 66px;
-}
 
 
 .checkbox {
@@ -62,7 +101,7 @@ p{
   width: 50%;
   height: 40px;
   position: relative;
-  top:2%;
+  top: 2%;
   text-align: center;
   left: 28%;
   box-shadow: none;
@@ -75,9 +114,7 @@ p{
     font-size: 12px;
     text-align: start;
   }
-
 }
-
 
 ion-button {
   text-align: center;
@@ -96,5 +133,6 @@ ion-button {
   height: 5%;
   position: relative;
   top: 32%;
-  left: 36%;
+  left: 37%;
 }
+*/

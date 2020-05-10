@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { LottieAnimationViewModule } from 'ng-lottie';
-
+   
 import {firebaseConfig } from '../environments/environment';
 import { DescripcionPageModule } from "../app/pages/descripcion/descripcion.module";
 import {AngularFireModule} from '@angular/fire'
@@ -19,6 +19,7 @@ import { AngularFireAuthModule} from '@angular/fire/auth'
 import { AngularFirestoreModule } from "angularfire2/firestore";
 import { NgCalendarModule } from "ionic2-calendar";
 import { CallNumber } from "@ionic-native/call-number/ngx";
+import { GoogleMaps, GoogleMap } from "@ionic-native/google-maps";
 
 
 @NgModule({
@@ -33,8 +34,9 @@ import { CallNumber } from "@ionic-native/call-number/ngx";
     CallNumber,
     SplashScreen,
     DescripcionPageModule,
+    GoogleMaps,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
-})
+}) 
 export class AppModule {}

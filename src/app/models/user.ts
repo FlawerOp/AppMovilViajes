@@ -1,9 +1,10 @@
-
-  
   export interface UserInterface {
     id?: string;
     name?: string;
     email?: string;
     password?: string;
-    photoUrl?: string;
+    userName?: string;
+    Asesor?:boolean;
+    Pasajero?:boolean;
+    ciudad?:string;
   }

@@ -1,39 +1,44 @@
 <ion-content>
+  <ion-infinite-scroll>
 
-  <ion-button routerLink="/main"class="botonatras">
+    <ion-button routerLink="/main" class="botonatras">
       <ion-icon class="icono" name="close"></ion-icon>
-  </ion-button>
+    </ion-button>
 
-  <div class="imagenes">
-    <img id="imagenes" mat-card-image src="{{url}}" />
-  </div>
+    <div class="imagenes">
+      <img id="imagenes" mat-card-image src="{{url}}" />
+    </div>
 
 
-  <ion-card class="card">
+    <ion-card class="card">
 
-    <ion-card-header>
+      <ion-card-header>
 
         <ion-icon name="pin"></ion-icon>
         <ion-card-title class="titulos" innerHtml="{{titulo}}"></ion-card-title>
-        <ion-card-subtitle  innerHtml="{{duracion}}"></ion-card-subtitle>
-     
-    </ion-card-header>
+        <ion-card-subtitle innerHtml="{{duracion}}"></ion-card-subtitle>
+        <div class="guiaAsignado">
+          <ion-button size="small" fill="outline" (click)="irAlGuia()">Guia Asignado: </ion-button>
+        </div>
+        <!--TODO si es necesario, agregar el service de guias y traer el guia asignado , pero no creo que sea necesario porque esa info sale del itinerario. -->
 
-    <ion-card-content>
-      <div class="titulos2"> Descripción:</div>
-      <div class="descripcion" innerHtml="{{descripcion}}"> </div>
+      </ion-card-header>
 
-      <div class="titulos2"> Este evento incluye:</div>
-      <div class="descripcion "innerHtml="{{incluye}}"> </div>
+      <ion-card-content>
+        <div class="titulos2"> Descripción:</div>
+        <div class="descripcion" innerHtml="{{descripcion}}"> </div>
 
-      <div class="titulos2" > Este evento no incluye:</div>
-      <div class="descripcion" innerHtml="{{no_incluye}}"> </div>
+        <div class="titulos2"> Este evento incluye:</div>
+        <div class="descripcion " innerHtml="{{incluye}}"> </div>
 
-      <div class="titulos2" > Nuestras recomendaciones son:</div>
-      <div class="descripcion" innerHtml="{{recomendaciones}}"> </div>
+        <div class="titulos2"> Este evento no incluye:</div>
+        <div class="descripcion" innerHtml="{{no_incluye}}"> </div>
 
-    </ion-card-content>
+        <div class="titulos2"> Recomendaciones:</div>
+        <div class="descripcion" innerHtml="{{recomendaciones}}"> </div>
 
-  </ion-card>
+      </ion-card-content>
 
+    </ion-card>
+  </ion-infinite-scroll>
 </ion-content>

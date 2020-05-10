@@ -11,17 +11,17 @@
       <ion-avatar class="avatare">
         <img src="../../assets/img/bandera.jpg" />
       </ion-avatar>
-      <h5>{{user.email}}</h5>
-      <p>ciudad turista</p>
+      <h5>{{nombreUsuario}}</h5>
+      <p>{{ciudad}}</p>
     </ion-card>
     <ion-list class="letraslista">
-      <ion-item routerLink="/semana">Itinerario <ion-icon name="calendar" slot="start"></ion-icon>
+      <ion-item routerLink="/semana">mi viaje <ion-icon name="calendar" slot="start"></ion-icon>
       </ion-item>
-      <ion-item routerLink="/main">Mi Itinerario  <ion-icon name="sunny" slot="start"></ion-icon>
+      <ion-item routerLink="/main">Para hoy tengo <ion-icon name="sunny" slot="start"></ion-icon>
       </ion-item>
-      <ion-item routerLink="/guias">Guias <ion-icon name="people" slot="start"></ion-icon>
+      <ion-item routerLink="/mapa"> Mi Hotel <ion-icon name="bed" slot="start"></ion-icon>
       </ion-item>
-      <ion-item routerLink="/conductores">Mi Hotel <ion-icon name="home" slot="start"></ion-icon>
+      <ion-item routerLink="/conductores">Mi conductor <ion-icon name="car" slot="start"></ion-icon>
       </ion-item>
       <ion-item routerLink="/contacto-rapido">Asesor Turistico<ion-icon name="call" slot="start"></ion-icon>
       </ion-item>
@@ -35,9 +35,9 @@
     <ion-buttons slot="start">
       <ion-button class="botonmenu" (click)="openCustom()">
         <ion-icon class="icono" name="menu"></ion-icon>
-      </ion-button>
+      </ion-button>Menu
     </ion-buttons>
-    <ion-title class="dia_toolbar">Hotel</ion-title>
+    <ion-title class="dia_toolbar">Conductor</ion-title>
     <ion-buttons slot="end">
       <ion-button class="botonmenu" disabled>
         <ion-icon class="icono" name=""></ion-icon>
@@ -47,11 +47,27 @@
 </ion-header>
 
 <ion-content>
-  <app-google-maps></app-google-maps>
+  <!--  <app-google-maps></app-google-maps>-->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
-  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
-    <ion-fab-button routerLink="/contacto-rapido">
-      <ion-icon name="person"></ion-icon>
+    <ion-card *ngFor=" let item of conductorUsuarioActual" >
+
+      <div class="imagenes">
+        <img mat-card-image src="{{item.foto}}" />
+      </div>
+      <div class="cartas">
+        <div class="titulo" innerHtml="{{item.nombre}}"></div>
+        <p class="p2">Telefono: <b>{{item.telefono}}</b></p>
+        <p class="p2">Placa: <b>{{item.placa}}</b></p>
+        <br>
+      </div>
+    </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" class="botonFab" color="danger">
+    <ion-fab-button routerLink="/contacto-rapido" color="danger" (click)="abrirModal()">
+      <ion-icon name="chatbubbles"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 
 
 
@@ -14,12 +14,14 @@ export class DescripcionPage implements OnInit {
   titulo;
   url;
   duracion;
-  descripcion;
+  descripcion
   incluye;
   no_incluye;
   recomendaciones;
+  guia;
   constructor(
     private active: ActivatedRoute,
+    private router:Router
   ) { }
 
   //FIXME el boton para abrir el menu no abre 
@@ -28,9 +30,13 @@ export class DescripcionPage implements OnInit {
     this.titulo = this.active.snapshot.paramMap.get("titulo");
     this.url = this.active.snapshot.paramMap.get("url");
     this.duracion = this.active.snapshot.paramMap.get("duracion");
-    this.descripcion = this.active.snapshot.paramMap.get("descripcion");
+    this.descripcion=this.active.snapshot.paramMap.get("descripcion");
     this.incluye = this.active.snapshot.paramMap.get("incluye");
     this.no_incluye = this.active.snapshot.paramMap.get("no_incluye");
     this.recomendaciones = this.active.snapshot.paramMap.get("recomendaciones");
+  }
+
+  irAlGuia(){
+    this.router.navigate(["/guias/"]);
   }
 }
