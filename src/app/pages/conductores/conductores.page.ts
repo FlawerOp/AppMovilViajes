@@ -112,6 +112,28 @@ export class ConductoresPage implements OnInit {
     })
   }
 
+  async abrirModalSeccionAyuda() {
+    const alert = await this.alertController.create({
+      header: "Bienvenido a la seccion de ayuda",
+      subHeader:
+        "aqui podras contactarte con tu asesor turistico en caso de tener problemas, dudas, felicitaciones, o cualquier otra cosa que necesites...",
+      message: "simplemente haz click en tu asesor y escribe lo que necesites",
+      buttons: [
+        {
+          text: "Ok, llevame allí",
+          handler: () => {
+            this.irAlChat();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  irAlChat() {
+    this.Router.navigate(["/contacto-rapido"]);
+  }
+
   consultarConductorUsuarioActual() {
     return new Promise((resolve, reject) => {
       this.afs.firestore.collection("conductores")
