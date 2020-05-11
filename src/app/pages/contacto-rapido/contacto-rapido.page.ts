@@ -131,4 +131,9 @@ export class ContactoRapidoPage implements OnInit {
     })
   }
 
+
+  irCiudad(){
+    this.Router.navigate(["/ciudad"]);
+  }
+
 }

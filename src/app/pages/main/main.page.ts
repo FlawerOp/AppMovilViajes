@@ -63,8 +63,6 @@ export class MainPage implements OnInit {
 
   ngOnInit() {
     this.userNameFiltrado = localStorage.getItem('userid');
-    console.log(this.userNameFiltrado);
-
     this.authService.isAuth().subscribe(user => {
       if (user) {
         this.user.name = user.displayName;
@@ -73,7 +71,7 @@ export class MainPage implements OnInit {
       }
     });
     this.getCiudad();
- 
+    console.log(this.eventosAsignados);
   }
 
   openCustom() {
@@ -151,6 +149,8 @@ export class MainPage implements OnInit {
           });
       }
     });
+    //copiar el codfigo de la consulta a la base de adtosa en el semana page, para hacer la misma consulta alla, y el resultado ponerlo en el eventSource del semana page, haber que pasa
+    
     return new Promise((resolve, reject) => {
       this.afs.firestore
         .collection("grupos")
@@ -187,6 +187,10 @@ export class MainPage implements OnInit {
           reject(error);
         });
     });
+  }
+
+  irCiudad(){
+    this.router.navigate(["/ciudad"]);
   }
 
 

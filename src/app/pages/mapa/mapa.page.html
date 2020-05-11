@@ -12,7 +12,12 @@
         <img src="../../assets/img/bandera.jpg" />
       </ion-avatar>
       <h5>{{nombreUsuario}}</h5>
-      <p>{{ciudad}}</p>
+      <div class="botonCiudad">
+        <ion-button size="small" fill="clear" 
+        color="success" (click)="irCiudad()"> 
+        <ion-icon slot="start" name="business"></ion-icon>
+        {{ciudad}}</ion-button>
+      </div>
       <!--TODO traer la ciudad del pasajero (aunque es mejor si se muestra la ciudad donde 
       TODO se encuentre el pasajero en ese momento)-->
     </ion-card>
@@ -72,7 +77,7 @@
 
 
   <ion-fab vertical="bottom" horizontal="end" class="botonFab" color="danger">
-    <ion-fab-button routerLink="/contacto-rapido" color="danger" (click)="abrirModal()">
+    <ion-fab-button routerLink="/contacto-rapido" color="danger">
       <ion-icon name="chatbubbles"></ion-icon>
     </ion-fab-button>
   </ion-fab>

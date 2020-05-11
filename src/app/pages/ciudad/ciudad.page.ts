@@ -94,5 +94,9 @@ export class CiudadPage implements OnInit {
     }, 1500);
   }
 
+  irCiudad(){
+    this.Router.navigate(["/ciudad"]);
+  }
+
 
 }

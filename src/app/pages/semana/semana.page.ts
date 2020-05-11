@@ -9,6 +9,7 @@ import { MenuController } from '@ionic/angular';
 import { CalendarComponent } from 'ionic2-calendar/calendar';
 import { AlertController } from '@ionic/angular';
 import { formatDate } from '@angular/common';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-semana',
@@ -17,22 +18,27 @@ import { formatDate } from '@angular/common';
 })
 export class SemanaPage implements OnInit {
 
-  nombreUsuario;
+  userNameFiltrado;
+  grupoFiltradoUsuarioActual;
+  eventosAsignados;
+  isToday: boolean;
+
 
   event = {
     title: '',
-    descm: '',
-    desc: '',
     startTime: '',
     endTime: '',
-    allDay: false
-  };
- 
+    allDay: false,
+    descm: '',
+    desc: '',
+   };
+  
+   viewTitle;
   minDate = new Date().toISOString();
- 
+
+
   eventSource = [];
-  viewTitle;
- 
+
   calendar = {
     mode: 'month',
     currentDate: new Date(),
@@ -43,40 +49,37 @@ export class SemanaPage implements OnInit {
   public ciudad: any = null;
   public userUid: string = null;
 
- 
+
   @ViewChildren(CalendarComponent) myCal: CalendarComponent;
 
   array: any;
   constructor(
-    private loadingController: LoadingController,
+    private  loadingController: LoadingController,
     private mainService: MainService,
     private Router: Router,
     private toastController: ToastController,
+    private afs: AngularFirestore,
+    private alertController: AlertController,
     private authService: AuthService,
     private menu: MenuController,
-    private alertCtrl: AlertController, 
+    private alertCtrl: AlertController,
     @Inject(LOCALE_ID) private locale: string
   ) { }
 
   ngOnInit() {
-    this.nombreUsuario=localStorage.getItem('userid');
-    this.resetEvent();
-    this.mainService.getAllEventos().subscribe(res => {
-      this.array = res;
-      console.log(this.array);
-    });
+    this.userNameFiltrado = localStorage.getItem('userid');
 
     this.authService.isAuth().subscribe(user => {
       if (user) {
-        console.log(user);
         this.user.name = user.displayName;
         this.user.email = user.email;
-     //   this.user.photoUrl = user.photoURL;
+        //   this.user.photoUrl = user.photoURL;
       }
     });
-    this.getCiudad ();
+    this.getCiudad();
+    this.obtenerEventos();
   }
- 
+
   openCustom() {
     this.menu.enable(true, 'semana');
     this.menu.open('semana');
@@ -102,55 +105,50 @@ export class SemanaPage implements OnInit {
       allDay: false
     };
   }
- 
+
   // Create the right event format and reload source
 
   next() {
     var swiper = document.querySelector('.swiper-container')['swiper'];
     swiper.slideNext();
   }
-   
+
   back() {
     var swiper = document.querySelector('.swiper-container')['swiper'];
     swiper.slidePrev();
   }
-   
+
   // Change between month/week/day
   changeMode(mode) {
     this.calendar.mode = mode;
   }
-   
+
   // Focus today
   today() {
     this.calendar.currentDate = new Date();
   }
-   
+
   // Selected date reange and hence title changed
   onViewTitleChanged(title) {
     this.viewTitle = title;
   }
-   
+
+  onCurrentDateChanged(event: Date) {
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    event.setHours(0, 0, 0, 0);
+    this.isToday = today.getTime() === event.getTime();
+  }
+
   // Calendar event was clicked
   async onEventSelected(event) {
-    // Use Angular date pipe for conversion
-    let start = formatDate(event.startTime, 'medium', this.locale);
-    let end = formatDate(event.endTime, 'medium', this.locale);
-   
-    const alert = await this.alertCtrl.create({
-      header: event.title,
-      subHeader: event.desc,
-      message: 'From: ' + start + '<br><br>To: ' + end,
-      buttons: ['OK']
-    });
-    alert.present();
+    console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
   }
-   
+
   // Time slot was clicked
   onTimeSelected(ev) {
-    let selected = new Date(ev.selectedTime);
-    this.event.startTime = selected.toISOString();
-    selected.setHours(selected.getHours() + 1);
-    this.event.endTime = (selected.toISOString());
+    console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
+      (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
   }
 
   getCiudad() {
@@ -159,13 +157,13 @@ export class SemanaPage implements OnInit {
         this.userUid = auth.uid;
         this.authService.isUserPasajero(this.userUid, this.ciudad)
           .subscribe(userRole => {
-            console.warn(userRole);
+            console.log(userRole);
             this.isPasajero = userRole.Pasajero;
-            console.warn("resultado pasajero=" + this.isPasajero);
+            console.log("resultado pasajero=" + this.isPasajero);
             this.isAsesor = userRole.Asesor;
-            console.warn("resultado asesor=" + this.isAsesor);
+            console.log("resultado asesor=" + this.isAsesor);
             this.ciudad = userRole.ciudad;
-            console.warn("la ciudad del pasajero es: " + this.ciudad);
+            console.log("la ciudad del pasajero es: " + this.ciudad);
           })
 
       }
@@ -173,5 +171,54 @@ export class SemanaPage implements OnInit {
     })
   }
 
+  obtenerEventos() {
+    return new Promise((resolve, reject) => {
+      this.afs.firestore
+        .collection("grupos")
+        .where("usuarios_grupo", "array-contains", this.userNameFiltrado) //donde dice pasajero debe decir this.userNameFiltrado
+        .get()
+        .then(queryGrupos => {
+          const arrayGrupoUsuarioActual = [];
+          queryGrupos.forEach(function (docGrupo) {
+            var objGrupos = JSON.parse(JSON.stringify(docGrupo.data()));
+            objGrupos.id = docGrupo.id;
+            arrayGrupoUsuarioActual.push(objGrupos);
+          });
+          if (arrayGrupoUsuarioActual.length > 0) {
+            resolve(arrayGrupoUsuarioActual);
+            this.grupoFiltradoUsuarioActual = arrayGrupoUsuarioActual;
+            this.eventosAsignados = this.grupoFiltradoUsuarioActual[0].itinerarioAsignado.eventos;
+            console.warn(this.grupoFiltradoUsuarioActual);
+
+          }
+          else {
+            this.abrirModalSinGrupoOItinerario();
+            resolve(null);
+          }
+        })
+        .catch((error: any) => {
+          reject(error);
+        });
+    });
+  }
+
+
+  async abrirModalSinGrupoOItinerario() {
+    const alert = await this.alertController.create({
+      header: 'lo sentimos,',
+      subHeader: 'No han asignado Tours para ti',
+      message: 'por favor comunicate con tu asesor.',
+    });
+
+    await alert.present();
+  }
+
+  irCiudad(){
+    this.Router.navigate(["/ciudad"]);
+  }
+
 
 }
+
+
+

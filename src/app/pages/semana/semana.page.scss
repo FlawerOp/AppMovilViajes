@@ -15,7 +15,7 @@ ion-content {
     color: #232323;
     text-align: start;
     padding: 3%;
-    font-family: 'Segoe UI';
+    font-family: "Segoe UI";
     margin-top: 8%;
     margin-left: 2%;
     margin-bottom: 2%;
@@ -42,13 +42,11 @@ img {
 
 .dia_toolbar {
     text-align: center;
-
 }
 
 ion-toolbar {
     --padding-bottom: 2%;
 }
-
 
 .imagenes {
     width: 90px;
@@ -57,7 +55,6 @@ ion-toolbar {
     margin-bottom: 8%;
     border-radius: 10px;
 }
-
 
 ion-card-title {
     margin-left: 60%;
@@ -71,7 +68,6 @@ ion-card-content {
     margin-left: 56%;
     position: relative;
     bottom: 30%;
-
 }
 
 //calendario
@@ -116,7 +112,7 @@ p {
     left: 20%;
 }
 
-.fecha{
+.fecha {
     position: absolute;
     top: 70%;
     width: 100%;
@@ -188,11 +184,12 @@ p {
     margin-left: 5%;
 
     h5 {
-        margin-top: 3%;
-        margin-left: 5%;
-        color: #a2cc46;
+        color: #749232;
         font-size: 20px;
         font-weight: bold;
+        position: relative;
+        top: 15%;
+        left: 20%;
     }
 
     p {
@@ -218,4 +215,14 @@ p {
             border-radius: 50%;
         }
     }
+
+    .botonCiudad{
+        position: relative;
+        right: 23%;
+        top: 58%;
+      }
+      
+
+
+
 }

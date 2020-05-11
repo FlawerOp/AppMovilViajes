@@ -12,7 +12,12 @@
         <img src="../../assets/img/bandera.jpg" />
       </ion-avatar>
       <h5>{{nombreUsuario}}</h5>
-      <p>{{ciudad}}</p>
+      <div class="botonCiudad">
+        <ion-button size="small" fill="clear" 
+        color="success" (click)="irCiudad()"> 
+        <ion-icon slot="start" name="business"></ion-icon>
+        {{ciudad}}</ion-button>
+      </div>
     </ion-card>
     <ion-list class="letraslista">
       <ion-item routerLink="/semana">mi viaje <ion-icon name="calendar" slot="start"></ion-icon>

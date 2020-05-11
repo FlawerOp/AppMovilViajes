@@ -162,4 +162,8 @@ export class ConductoresPage implements OnInit {
     })
   }
 
+
+  irCiudad(){
+    this.router.navigate(["/ciudad"]);
+  }
 }

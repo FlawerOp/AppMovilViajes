@@ -125,5 +125,8 @@ getHotel(){
   })
 }
 
+irCiudad(){
+  this.router.navigate(["/ciudad"]);
+}
 
 }
