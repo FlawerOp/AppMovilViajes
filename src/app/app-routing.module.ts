@@ -47,9 +47,10 @@ const routes: Routes = [
   {
     path: 'chat/:nombre/:telefono',
     loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule),canActivate:[GuardGuard]
-  },  {
+  },
+  {
     path: 'ciudad',
-    loadChildren: () => import('./pages/ciudad/ciudad.module').then( m => m.CiudadPageModule)
+    loadChildren: () => import('./pages/ciudad/ciudad.module').then( m => m.CiudadPageModule),canActivate:[GuardGuard]
   },
 
 

@@ -1,98 +1,16 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
-ion-content {
-  --background: #e0e0e0;
-}
-
-.titulo {
-  text-align: start;
-  width: 100%;
-  font-size: 16px;
-  font-weight: bold;
-  color: #232323;
-  text-align: start;
-  padding: 3%;
-  font-family: "Segoe UI";
-  margin-top: 8%;
-  margin-left: 2%;
-  margin-bottom: 2%;
-}
-
-.p {
-  margin-left: 5%;
-}
-
-.p2 {
-  margin-left: 5%;
-  color: #232323;
-}
-
-img {
-  width: 250px;
-  height: 130px;
-}
-
-.cartas {
-  display: block;
-  width: 65%;
-}
-
-.dia_toolbar {
-  text-align: center;
-}
-
-ion-toolbar {
-  --padding-bottom: 2%;
-}
-
-ion-card {
-  --background: white;
-  margin-bottom: 0.5%;
-  display: flex;
-  justify-content: center;
-}
-
-.imagenes {
-  width: 90px;
-  height: 130px;
-  margin-top: 8%;
-  margin-bottom: 8%;
-  border-radius: 10px;
-}
-
-ion-card-title {
-  margin-left: 60%;
-  font-size: 20px;
-  text-align: center;
-  font-family: segoe ui;
-  font-weight: bold;
-}
-
-ion-card-content {
-  margin-left: 56%;
+.nombreCiudad{
   position: relative;
-  bottom: 30%;
+  margin: 5%;
+  left: 51%;
+}
+.continuar{
+  position: relative;
+  left :65%;
 }
 
-//menu
-
-.icono {
-  font-size: 30px;
-}
-
-.botonmenu {
-  width: 50px;
-  height: 50px;
-  --border-radius: 50%;
-  border-radius: 50%;
-}
-
-.icono2 {
-  font-size: 30px;
-  color: #a2cc46;
+.menutop {
+  background: #232323;
+  box-shadow: none;
 }
 
 .botonmenu2 {
@@ -103,9 +21,20 @@ ion-card-content {
   margin-left: 84%;
 }
 
-.menutop {
-  background: #232323;
-  box-shadow: none;
+.botonmenu {
+  width: 50px;
+  height: 50px;
+  --border-radius: 50%;
+  border-radius: 50%;
+}
+
+.icono {
+  font-size: 30px;
+}
+
+.icono2 {
+  font-size: 30px;
+  color: #a2cc46;
 }
 
 .menuback {
@@ -123,6 +52,7 @@ ion-card-content {
     font-size: 21px;
     margin-top: 5%;
   }
+
   ion-icon {
     font-size: 40px;
     color: white;
@@ -145,17 +75,9 @@ ion-card-content {
     font-size: 20px;
     font-weight: bold;
     position: relative;
-    top: 15%;
-    left: 20%;
-  }
-
-  p {
-    position: absolute;
-    top: 55%;
-    color: #232323;
-    font-size: 16px;
-    right: 45%;
-    font-weight: bold;
+    top: 9%;
+    left: 26%;
+  
   }
 
   .avatare {
@@ -172,10 +94,59 @@ ion-card-content {
       border-radius: 50%;
     }
   }
-
-  .botonCiudad {
-    position: relative;
-    right: 23%;
-    top: 58%;
-  }
 }
+
+.botonCiudad{
+  position: relative;
+  left:34%;
+  top: 13%;
+}
+
+.dia_toolbar {
+  text-align: center;
+}
+//---------------nuevo--------------------------
+
+* {
+  padding: 0%;
+  margin: 0%;
+}
+
+ion-card {
+  --background: white;
+}
+
+.card {
+  width: 100%;
+  margin-top: -14%;
+  background: white;
+  border-radius: 54px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom: none;
+  height: auto;
+  box-shadow: none;
+}
+
+.titulos {
+  width: 50%;
+  margin-left: 15%;
+  margin-top: 8%;
+}
+
+.titulos2 {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 6%;
+  font-weight: bold;
+  color: #232323;
+}
+
+.descripcion {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 0%;
+  font-weight: bold;
+}
+
+//----HASTA ACA SIRVE BIEN

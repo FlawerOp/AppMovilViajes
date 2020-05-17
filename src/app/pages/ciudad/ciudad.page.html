@@ -1,4 +1,4 @@
-<ion-menu side="start" menuId="main" class="my-custom-menu">
+<ion-menu side="start" menuId="ciudad" class="my-custom-menu">
   <ion-header class="menutop">
     <ion-buttons slot="end">
       <ion-button class="botonmenu2" (click)="atras()">
@@ -11,12 +11,13 @@
       <ion-avatar class="avatare">
         <img src="../../assets/img/bandera.jpg" />
       </ion-avatar>
-      <h5>{{userNameFiltrado}}</h5>
-      <div class="botonCiudad">
-        <ion-button size="small" fill="clear" 
-        color="success" (click)="irCiudad()"> 
-        <ion-icon slot="start" name="business"></ion-icon>
-        {{ciudad}}</ion-button>
+      <div class="nombreCiudad">
+        <h5>{{userNameFiltrado}}</h5>
+        <div class="botonCiudad">
+          <ion-button size="small" fill="outline" color="success" (click)="irCiudad()">
+
+            {{ciudad}}</ion-button>
+        </div>
       </div>
       <!--TODO traer la ciudad del pasajero (aunque es mejor si se muestra la ciudad donde 
       TODO se encuentre el pasajero en ese momento)-->
@@ -54,43 +55,44 @@
   </ion-toolbar>
 </ion-header>
 
-
+<!--FINAL DE LA CABECERA----------------------->
 
 <ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-
-  <ion-content>
-    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
-    <ion-infinite-scroll position="bottom">
 
 
-      <ion-card *ngFor=" let item of Mensaje" >
+  <div class="imagenes">
+    <img id="imagenes" mat-card-image src="{{FotoCiudad}}" />
+  </div>
 
-        <div class="imagenes">
-          <img mat-card-image src="{{item.foto}}" />
-        </div>
-        <div class="cartas">
-          <div class="titulo" innerHtml="{{item.titulo}}"></div>
-          <p class="p" innerHtml="{{item.descripcion}}"></p>
-          <p class="p2">Clima: <b>{{item.clima}}</b></p>
-          <p class="p2">Gentilicio: <b>{{item.gentilicio}}</b></p>
-          <p class="p2">Moneda: <b>{{item.moneda}}</b></p>
-          
-          <br>
-        </div>
-      </ion-card>
+  <ion-card class="card">
+    <ion-card-content>
+      <div class="titulos2">Ciudad:</div>
+      <div class="descripcion" innerHtml="{{ciudad}}"> </div>
 
-      <ion-fab vertical="bottom" horizontal="end" class="botonFab" color="danger">
-        <ion-fab-button routerLink="/contacto-rapido" color="danger" (click)="abrirModalSeccionAyuda()">
-          <ion-icon name="chatbubbles"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
+      <div class="titulos2">Clima:</div>
+      <div class="descripcion " innerHtml="{{Clima}}"> </div>
+
+      <div class="titulos2"> Descripcion:</div>
+      <div class="descripcion" innerHtml="{{descripcion}}"> </div>
+
+      <div class="titulos2"> Gentilicio:</div>
+      <div class="descripcion" innerHtml="{{gentilicio}}"> </div>
 
 
-    </ion-infinite-scroll>
+      <div class="titulos2"> Moneda:</div>
+      <div class="descripcion" innerHtml="{{moneda}}"> </div>
 
-  </ion-content>
+    </ion-card-content>
+
+    <div class="continuar">
+      <ion-button  fill="solid" color="success" (click)="irParaHoyTengo()">
+        Ok, siguiente</ion-button>
+
+    </div>
+
+  </ion-card>
+
+
+
+
+</ion-content>

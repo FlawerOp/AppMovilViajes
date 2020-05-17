@@ -11,7 +11,14 @@ export class CiudadPage implements OnInit {
   userNameFiltrado;
   ciudad;
   Mensaje;
+  FotoCiudad;
 
+
+  Clima
+  descripcion
+  gentilicio
+  moneda
+  
   constructor(private menu: MenuController, private afs:AngularFirestore,private alertController: AlertController,
     private Router: Router,
     ) { }
@@ -27,8 +34,8 @@ export class CiudadPage implements OnInit {
   }
 
   openCustom() {
-    this.menu.enable(true, "main");
-    this.menu.open("main");
+    this.menu.enable(true, "ciudad");
+    this.menu.open("ciudad");
   }
   atras() {
     this.menu.close("main");
@@ -51,7 +58,12 @@ export class CiudadPage implements OnInit {
           if (arrayMensajeUsuarioActual.length > 0) {
             resolve(arrayMensajeUsuarioActual);
             this.Mensaje=arrayMensajeUsuarioActual;
-            console.log(this.Mensaje[0].ciudad)
+            this.FotoCiudad=arrayMensajeUsuarioActual[0].foto;
+            this.Clima=arrayMensajeUsuarioActual[0].clima;
+            this.descripcion=arrayMensajeUsuarioActual[0].descripcion
+            this.gentilicio=arrayMensajeUsuarioActual[0].gentilicio;
+            this.moneda=arrayMensajeUsuarioActual[0].moneda
+            console.warn(this.Mensaje);
           }
           else {
             console.log("quedo mal la consulta de los mensajes ");
@@ -98,5 +110,8 @@ export class CiudadPage implements OnInit {
     this.Router.navigate(["/ciudad"]);
   }
 
+  irParaHoyTengo(){
+    this.Router.navigate(["/main"]);
+  }
 
 }
