@@ -1,7 +1,7 @@
 .nombreCiudad{
   position: relative;
-  margin: 5%;
-  left: 51%;
+  margin: 2%;
+  left: 5%;
 }
 .continuar{
   position: relative;
@@ -21,17 +21,6 @@
   margin-left: 84%;
 }
 
-.botonmenu {
-  width: 50px;
-  height: 50px;
-  --border-radius: 50%;
-  border-radius: 50%;
-}
-
-.icono {
-  font-size: 30px;
-}
-
 .icono2 {
   font-size: 30px;
   color: #a2cc46;
@@ -42,24 +31,6 @@
   --border: none;
 }
 
-.letraslista {
-  background-color: #232323;
-  margin-top: 8%;
-
-  ion-item {
-    --background: #232323;
-    --color: white;
-    font-size: 21px;
-    margin-top: 5%;
-  }
-
-  ion-icon {
-    font-size: 40px;
-    color: white;
-    margin-left: 3%;
-    margin-right: 6%;
-  }
-}
 
 .nombres {
   width: 100%;
@@ -100,6 +71,37 @@
   position: relative;
   left:34%;
   top: 13%;
+}
+
+
+.letraslista {
+  background-color: #232323;
+  margin-top: 8%;
+
+  ion-item {
+    --background: #232323;
+    --color: white;
+    font-size: 21px;
+    margin-top: 5%;
+  }
+
+  ion-icon {
+    font-size: 40px;
+    color: white;
+    margin-left: 3%;
+    margin-right: 6%;
+  }
+}
+
+.botonmenu {
+  width: 50px;
+  height: 50px;
+  --border-radius: 50%;
+  border-radius: 50%;
+}
+
+.icono {
+  font-size: 30px;
 }
 
 .dia_toolbar {
@@ -149,4 +151,10 @@ ion-card {
   font-weight: bold;
 }
 
+ion-card-subtitle {
+  width: 80%;
+  margin-left: 15%;
+  margin-top: 0%;
+  font-weight: bold;
+}
 //----HASTA ACA SIRVE BIEN
